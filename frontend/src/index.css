@@ -1,3 +1,38 @@
+/* ./src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+    /* default theme */
+    :root {
+        /* --var-name: rgb value */
+        --color-primary: 0, 0, 0;
+        --color-secondary: 0, 48, 73;
+        --color-muted: 255, 255, 255;
+        --color-accent: 24, 25, 31;
+
+        --bg-primary: 10, 20, 47;
+        --bg-secondary: 253, 240, 213;
+        --bg-muted: 255, 255, 255;
+    }
+    /* custom themes
+        if you apply this class on any element than these property will be used for that
+        and for gloab just apply this class to body tag
+    */
+    .theme-dark {
+        /* --var-name: rgb value */
+        --color-primary: 0, 0, 0;
+        --color-secondary: 0, 48, 73;
+        --color-muted: 255, 255, 255;
+        --color-accent: 24, 25, 31;
+
+        --bg-primary: 10, 20, 47;
+        --bg-secondary: 253, 240, 213;
+        --bg-muted: 255, 255, 255;
+    }
+
+    /* add the font facecs here */
+}
+html {
+    scroll-behavior: smooth;
+}
