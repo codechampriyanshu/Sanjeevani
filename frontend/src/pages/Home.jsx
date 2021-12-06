@@ -1,10 +1,13 @@
 import React from 'react'
-import Footer from '../components/Footer/Footer'
-
+import Reviews from '../Components/Reviews/Reviews'
+import Login from '../Components/Login/Login'
+import Ragister from '../Components/Register/Register'
+import Landing from "../Components/Landing/Landing"
 export default function Home() {
     return (
         <div>
-            <Footer/>
+            <Landing/>
+            <Ragister/>
         </div>
     )
 }
