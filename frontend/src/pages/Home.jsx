@@ -1,13 +1,13 @@
 import React from 'react'
-import Reviews from '../Components/Reviews/Reviews'
-import Login from '../Components/Login/Login'
-import Ragister from '../Components/Register/Register'
+import Register from '../Components/Register/Register'
 import Landing from "../Components/Landing/Landing"
+import Login from "../Components/Login/Login"
 export default function Home() {
     return (
         <div>
             <Landing/>
-            <Ragister/>
+            <Register/>
+            <Login/>
         </div>
     )
 }
