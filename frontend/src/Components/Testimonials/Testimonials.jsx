@@ -9,18 +9,19 @@ import "slick-carousel/slick/slick-theme.css";
 const config = {
     arrows:false,
     autoplay:true,
-    dots: true,
+    dots: false,
+    fade:true,
     infinite: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     speed:500,
-    pauseOnHover:false,
+    pauseOnHover:true,
     slidesToShow: 3,
     slidesToScroll: 1,
     centerMode: true, // enable center mode
     centerPadding: '50px' // set center padding
   };
 
-export default function Landing() {
+export default function Testimonials() {
    const [settings,setSettings]=useState(config)
    useEffect(()=>{
      const handleResize=()=>{
@@ -53,20 +54,23 @@ export default function Landing() {
         sliderRef.current.slickPrev()
     }
     return (
-        <div className="relative w-full overflow-hidden">
-        <button onClick={goPrev}><img src="/images/left-arrow.png" alt="" className="absolute z-20 w-6 h-6 bg-gray-100 rounded-full md:h-8 md:w-8 opacity-30 left-2 top-1/3"/></button>
+        <div>
+        <span className="block pt-10 text-center text-blue-800 md:text-3xl md:font-bold md:mt-6">What people have to say....</span>
+        <div className="relative w-2/5 mx-auto">
+        <button onClick={goPrev}><img src="/images/left-arrow.png" alt="" className="absolute z-20 w-6 h-6 rounded-full md:h-8 md:w-8 opacity-30 left-2 top-1/3"/></button>
             <Slider ref={sliderRef} {...settings} className="w-full m-0">
                 {images.map((x, i) => {
                     return <div key={i} className="h-60 img-card bnine:h-80">
-                    <img className="object-cover w-full h-48" src={x.img} alt=""/>
+                    <img className="object-cover w-1/3 mx-auto mt-3 rounded-full h-36 ring-white ring" src={x.img} alt=""/>
                     <div className="card-body">
                         <div className="mb-2 text-base font-semibold md:text-lg lg:text-xl">{x.title}</div>
-                        <div className="hidden text-sm bnine:mt-3 bnine:block md:text-base">{x.text}</div>
+                        <div className="hidden text-sm sm:block bnine:mt-3 md:text-base">{x.text}</div>
                     </div>
                     </div>
                 })}
                 </Slider>
-                <button onClick={goNext}><img src="/images/right-arrow.png" alt="" className="absolute z-20 w-6 h-6 bg-gray-100 border rounded-full md:h-8 md:w-8 opacity-30 right-2 top-1/3"/></button>
+                <button onClick={goNext}><img src="/images/right-arrow.png" alt="" className="absolute z-20 w-6 h-6 border rounded-full md:h-8 md:w-8 opacity-30 right-2 top-1/3"/></button>
+        </div>
         </div>
     )
 }
