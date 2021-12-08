@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
 export default function Home() {
       const [toggle,setToggle]=useState(false)
     return (
-        <div onFocus={()=>setToggle(false)} className="bg-gray-50">
+        <div onFocus={()=>{setToggle(false)}} className="bg-gray-50">
             <Navbar toggle={toggle} setToggle={setToggle}/>
             <Landing/>
             <Testimonials/>
