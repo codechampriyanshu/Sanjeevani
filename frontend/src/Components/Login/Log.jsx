@@ -32,7 +32,7 @@ export default function Log() {
             <div className="mb-4">
               <label
                 className="block mb-2 text-sm font-normal text-gray-700"
-                for="username"
+                htmlFor="email"
               >
                 Email
               </label>
@@ -42,14 +42,14 @@ export default function Log() {
                 type="email"
                 ref={emailRef}
                 required
-                autofocus
+                autoFocus
                 placeholder="Email"
               />
             </div>
             <div className="mb-6">
               <label
                 className="block mb-2 text-sm font-normal text-gray-700"
-                for="password"
+                htmlFor="password"
               >
                 Password
               </label>
@@ -60,7 +60,6 @@ export default function Log() {
                 ref={passwordRef}
                 name="password"
                 required
-                autocomplete="current-password"
               />
             </div>
             <div className="flex items-center justify-between">
