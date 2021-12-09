@@ -11,4 +11,11 @@ app.post('/login',(req,res)=>{
     console.log(req.body.email,req.body.password)
     res.send("success")
 })
+
+app.post('/register',(req,res)=>{
+  console.log(req.body)
+  res.send("success")
+})
+
+//X3wsQTbvx3BAuOSH
 app.listen(8000,()=>{console.log("server started")})
