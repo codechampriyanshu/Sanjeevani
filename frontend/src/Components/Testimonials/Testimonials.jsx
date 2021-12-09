@@ -32,10 +32,10 @@ export default function Testimonials() {
     }
     return (
         <div className="md:mb-8">
-        <span className="block pt-10 text-center text-blue-800 md:text-3xl md:font-bold md:mt-6">What people say....</span>
+        <span className="block pt-10 text-center text-blue-800 select-none md:text-3xl md:font-bold md:mt-6">What people say....</span>
         <div className="relative w-full mx-auto md:w-2/3 xl:w-1/2">
-        <button onClick={goPrev}><img src="/images/left-arrow.png" alt="" className="absolute z-20 w-6 h-6 rounded-full md:h-8 md:w-8 opacity-30 left-2 top-1/3"/></button>
-            <Slider ref={sliderRef} {...config} className="w-full m-0">
+        <button onClick={goPrev}><img src="/images/left-arrow.png" alt="" className="absolute z-20 w-6 h-6 rounded-full select-none md:h-8 md:w-8 opacity-30 left-2 top-1/3"/></button>
+            <Slider ref={sliderRef} {...config} className="w-full mx-auto">
                 {images.map((x, i) => {
                     return <div key={i} className="h-48 xs:h-60 sm:h-64 md:h-72 img-card bnine:h-80">
                     <img className="object-cover w-1/4 mx-auto mt-3 mb-2 rounded-full lg:mb-7 sm:mb-4 h-1/3 lg:w-1/5 md:h-2/5 md:w-1/4 sm:w-1/5 xs:w-1/4 xs:h-2/5 ring-white ring" src={x.img} alt=""/>
@@ -46,7 +46,7 @@ export default function Testimonials() {
                     </div>
                 })}
                 </Slider>
-                <button onClick={goNext}><img src="/images/right-arrow.png" alt="" className="absolute z-20 w-6 h-6 border rounded-full md:h-8 md:w-8 opacity-30 right-2 top-1/3"/></button>
+                <button onClick={goNext}><img src="/images/right-arrow.png" alt="" className="absolute z-20 w-6 h-6 border rounded-full select-none md:h-8 md:w-8 opacity-30 right-2 top-1/3"/></button>
         </div>
         </div>
     )
