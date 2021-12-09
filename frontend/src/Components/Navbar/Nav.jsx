@@ -13,7 +13,7 @@ export default function Nav({toggle,setToggle}) {
           <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
         </svg>
       </div>
-      <div className={(toggle?"flex ":"hidden ")+"flex-col pt-12 absolute md:hidden top-0 right-0 h-full w-2/3 z-40 pr-24 bg-black text-white opacity-90"}>
+      <div className={(toggle?"translate-x-0 ":"translate-x-80 ")+"flex transform delay-700 flex-col pt-12 absolute md:hidden top-0 right-0 h-full w-2/3 z-40 pr-8 bg-black text-white opacity-90"}>
         <Link className="pt-8 pl-4 text-lg font-bold" to="/">Home</Link>
         <Link className="pt-8 pl-4 text-lg font-bold" to="/profile">My profile</Link>
         <Link className="pt-4 pl-4 text-lg font-bold" to="/appointments">Appointments</Link>
