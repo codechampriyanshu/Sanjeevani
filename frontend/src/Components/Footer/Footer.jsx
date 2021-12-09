@@ -2,7 +2,7 @@ import React from 'react'
 import { Link} from 'react-router-dom'
 export default function Footer() {
     return (
-        <div className="w-full py-2 bg-gray-700 text-custom-muted sm:py-4">
+        <div className="w-full py-2 bg-gray-700 select-none text-custom-muted sm:py-4">
         <div className="flex flex-col justify-around text-xs xs:text-sm between:text-base sm:flex-row sm:text-lg lg:text-xl">
             <div className="flex flex-col mt-1 text-center">
                 <h3 className="text-sm font-semibold sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">Quick Links</h3>
