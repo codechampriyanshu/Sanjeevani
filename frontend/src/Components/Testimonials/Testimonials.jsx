@@ -31,7 +31,7 @@ export default function Testimonials() {
         sliderRef.current.slickPrev()
     }
     return (
-        <div className="md:mb-8">
+        <div className="overflow-hidden md:mb-8">
         <span className="block pt-10 text-center text-blue-800 select-none md:text-3xl md:font-bold md:mt-6">What people say....</span>
         <div className="relative w-full mx-auto md:w-2/3 xl:w-1/2">
         <button onClick={goPrev}><img src="/images/left-arrow.png" alt="" className="absolute z-20 w-6 h-6 rounded-full select-none md:h-8 md:w-8 opacity-30 left-2 top-1/3"/></button>

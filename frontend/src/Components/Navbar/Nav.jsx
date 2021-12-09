@@ -6,14 +6,14 @@ export default function Nav({toggle,setToggle}) {
     setToggle(!toggle)
   }
   return (
-    <div >
-      <div className="md:hidden">
-        <img src="/images/logo.jpg" className="absolute z-50 w-12 h-12 select-none top-3 left-3" alt="logo"/>
-        <svg onClick={handleClick} xmlns="http://www.w3.org/2000/svg" className={(toggle?"text-white ":"text-black ")+ "absolute z-50 w-8 h-8 top-3 right-3"} viewBox="0 0 20 20" fill="currentColor">
+    <div className="overflow-x-none">
+      <div className="fixed z-50 flex items-center justify-between w-full px-3 top-3 md:hidden">
+        <img src="/images/logo.jpg" className="w-12 h-12 select-none " alt="logo"/>
+        <svg onClick={handleClick} xmlns="http://www.w3.org/2000/svg" className={(toggle?"text-custom-muted ":"text-black ")+ "w-8 h-8 top-3"} viewBox="0 0 20 20" fill="currentColor">
           <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
         </svg>
       </div>
-      <div className={(toggle?"flex ":"hidden ")+"flex-col pt-12 absolute md:hidden top-0 right-0 h-full w-2/3 z-40 pr-24 bg-black text-white opacity-90"}>
+      <div className={(toggle?"-translate-x-1 ":"translate-x-72 ")+" transform duration-500 flex flex-col pt-12 fixed md:hidden top-0 right-0 h-full w-72 z-40 bg-black text-custom-muted opacity-90"}>
         <Link className="pt-8 pl-4 text-lg font-bold select-none" to="/">Home</Link>
         <Link className="pt-8 pl-4 text-lg font-bold select-none" to="/profile">My profile</Link>
         <Link className="pt-8 pl-4 text-lg font-bold select-none" to="/appointments">Appointments</Link>
