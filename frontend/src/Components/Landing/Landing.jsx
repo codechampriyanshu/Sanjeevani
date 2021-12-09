@@ -53,8 +53,8 @@ export default function Landing() {
         sliderRef.current.slickPrev()
     }
     return (
-        <div className="relative w-full mt-12 overflow-hidden">
-        <button onClick={goPrev}><img src="/images/left-arrow.png" alt="" className="absolute z-20 w-6 h-6 bg-gray-100 rounded-full md:h-8 md:w-8 opacity-30 left-2 top-1/3"/></button>
+        <div className="relative w-full mt-12 overflow-hidden" id="Home">
+        <button onClick={goPrev}><img src="/images/left-arrow.png" alt="" className="absolute z-20 w-6 h-6 bg-gray-100 rounded-full select-none md:h-8 md:w-8 opacity-30 left-2 top-1/3"/></button>
             <Slider ref={sliderRef} {...settings} className="w-full m-0">
                 {images.map((x, i) => {
                     return <div key={i} className="h-60 img-card bnine:h-80">
@@ -66,7 +66,7 @@ export default function Landing() {
                     </div>
                 })}
                 </Slider>
-                <button onClick={goNext}><img src="/images/right-arrow.png" alt="" className="absolute z-20 w-6 h-6 bg-gray-100 border rounded-full md:h-8 md:w-8 opacity-30 right-2 top-1/3"/></button>
+                <button onClick={goNext}><img src="/images/right-arrow.png" alt="" className="absolute z-20 w-6 h-6 bg-gray-100 border rounded-full select-none md:h-8 md:w-8 opacity-30 right-2 top-1/3"/></button>
         </div>
     )
 }
