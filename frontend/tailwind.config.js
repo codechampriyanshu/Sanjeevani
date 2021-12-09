@@ -24,6 +24,9 @@ module.exports = {
         '2xl' : '1536px',
     },
     extend: {
+        // backgroundImage: {
+        //     'hero-pattern':`url(${process.env.PUBLIC_URL}/images/bubbles.svg)`
+        // },
       colors: {
           custom: {
               primary: withOpacity("--color-primary"),

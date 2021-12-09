@@ -15,7 +15,7 @@ const config = {
     autoplaySpeed: 4000,
     speed:500,
     pauseOnHover:true,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true, // enable center mode
     centerPadding: '50px' // set center padding
