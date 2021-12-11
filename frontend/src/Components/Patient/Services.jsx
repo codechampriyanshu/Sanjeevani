@@ -2,7 +2,7 @@ import React from 'react'
 import {  FaBookMedical} from "react-icons/fa";
 import {BsBoxArrowRight } from "react-icons/bs";
 import { BiLocationPlus } from "react-icons/bi";
-
+import { FaUserPlus } from 'react-icons/fa';
 export default function Services() {
     return (
         <div className="mt-10 ">
@@ -15,6 +15,10 @@ export default function Services() {
             <h3 className="p-3 font-bold">Services Available</h3>
             <div>
                 <FaBookMedical className="text-blue-700"/>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+                <FaUserPlus className="w-8 h-8 text-blue-700"/>
+                <span className="text-sm ">Appointment</span>
             </div>
             <div>
                 <BiLocationPlus className="text-blue-700"/>
