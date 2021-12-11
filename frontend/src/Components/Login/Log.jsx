@@ -10,7 +10,7 @@ export default function Log() {
       password:passwordRef.current.value,
     })
     console.log(emailRef.current.value,passwordRef.current.value)
-    fetch("mongosh "mongodb+srv://cluster0.hdfc4.mongodb.net/myFirstDatabase" --username Dharmendra",{
+    fetch("http://localhost:8000/login",{
       method:'POST',
       headers: {
         'Content-Type': 'application/json'
