@@ -13,12 +13,12 @@ app.use(function(req, res, next) {
   });
 
   mongoose.connect(MONGO_URI)
-  .then(()=>console.log("register"))
-  .catch((e)=>console.log("error: "+e.message))
+  .then(()=>console.log("connected to database"))
+  .catch((e)=>console.log(e))
 
 app.post('/register',(req,res)=>register(req,res))
 
 app.post('/login',(req,res)=>login(req,res))
 
-//X3wsQTbvx3BAuOSH
+//l90m7KdXFej4Ed4G
 app.listen(8080,()=>{console.log("server started")})

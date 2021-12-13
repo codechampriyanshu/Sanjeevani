@@ -22,9 +22,9 @@ const userSchema= new Schema({
     weight:{type:String},
     license:{type:String},
     gender:{type:String},
-    state:{type:String, required:[true,'please enter your state']},
-    zip:{type:String,required:[true,'enter your zip number']},
-    city:{type:String}
+    zip:{type:Number,required:[true,'enter your zip number']},
+    city:{type:String},
+    photo:{type:String}
 })
 
 userSchema.pre('save',async function (next){
