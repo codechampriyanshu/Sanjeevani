@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {HashLink } from 'react-router-hash-link'
 
-export default function Nav({toggle,setToggle}) {
+export default function Nav({toggle,setToggle,user}) {
   /* It will be used later...
    const [bg,setBg]=useState(false)
   useEffect(()=>{
