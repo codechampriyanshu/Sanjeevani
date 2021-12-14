@@ -24,7 +24,7 @@ const userSchema= new Schema({
     gender:{type:String},
     zip:{type:Number,required:[true,'enter your zip number']},
     city:{type:String},
-    photo:{type:String}
+    photo:{type:String,required:[true,'upload your .jpg photo']}
 })
 
 userSchema.pre('save',async function (next){

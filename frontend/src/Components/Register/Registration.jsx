@@ -22,26 +22,24 @@ export default function Registration() {
     })
      const [user,setUser]=useState("patient")
 
-    function handleChange(e,field){
+    function handleChange(e,field){     //function to handle all the inputs, except image
         setFormdata({...formdata,[field]:e.target.value})
     }
-    const imageRef=useRef();
-    function encodeImageFileAsURL() {
 
-      let filesSelected = imageRef.current.files;
-      if (filesSelected.length > 0) {
-        let fileToLoad = filesSelected[0];
-  
-        let fileReader = new FileReader();
-  
-        fileReader.onload = function(fileLoadedEvent) {
+    const imageRef=useRef();
+
+    function handleImage() {         //function to handle the image input
+      const image=imageRef.current.files[0]
+
+      if(image && image['type'].split('/')[0] === 'image'){  //continue only if file is an image.
+        let fileReader = new FileReader()
+        fileReader.onload =fileLoadedEvent =>{
           let srcData = fileLoadedEvent.target.result; // <--- data: base64
-          console.log("Converted Base64 version is ",srcData);
           setFormdata({...formdata,photo:[srcData]})
         }
-        fileReader.readAsDataURL(fileToLoad);
+        fileReader.readAsDataURL(image);
       }
-    }
+  }
 
     return (
         <div className="mt-10 sm:mt-0">
@@ -51,7 +49,7 @@ export default function Registration() {
     <div className="lg:grid lg:grid-cols-4 place-content-center md:gap-6">
    
     <div className="mt-5 md:mt-0 md:col-start-2 md:col-end-4">
-      <form action="#" onSubmit={(e)=>e.preventDefault()} method="POST">
+      <form>
         <div className="overflow-hidden shadow sm:rounded-md">
           <div className="px-4 py-5 bg-white sm:p-6">
             <div className="grid grid-cols-6 gap-6">
@@ -167,12 +165,12 @@ export default function Registration() {
 
               <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                 <label htmlFor="photo" className="block text-sm font-medium text-gray-700">Upload Photo</label>
-                <input type="file" ref={imageRef} name="photo" onChange={(e)=>encodeImageFileAsURL()} id="photo" className="block w-full mt-1 border-gray-900 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
+                <input type="file" accept='image/*' ref={imageRef} name="photo" onChange={(e)=>handleImage()} id="photo" className="block w-full mt-1 border-gray-900 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
               </div>
                 
                 {   //for rendering image-->
-                  // formdata.photo!=="" &&
-                  // <img src={formdata.photo} className='w-20 h-20'/>
+                  formdata.photo!=="" &&
+                  <img src={formdata.photo} className='w-20 h-20'/>
                 }
             </div>
           </div>
