@@ -5,7 +5,6 @@ export function handleSubmit(e,formdata){
         return;
     }
     const text=JSON.stringify(formdata)
-    console.log(formdata)
     fetch("http://localhost:8080/register",{
     method:'POST',
     headers: {
@@ -15,14 +14,17 @@ export function handleSubmit(e,formdata){
     body:text,
   }).then(res=>res.json())
   .then((res)=>{
-    if(res.status===201)
-      console.log("registered")
-    else{
+    if(res.status===201){
+      console.log(res.user)
+      return res.user;
+    }
+    else if(res.errors){
       console.log(res.errors.email, res.errors.password)
-      window.alert(res.errors.email)
+      window.alert(`Error: ${res.errors.email}`,res.errors.password)
     }
   })
-  .catch((e)=>console.log(e))
+  .catch((e)=>window.alert(e))
+  return false;
 }
 
 export async function getCity(zip){
