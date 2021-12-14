@@ -29,12 +29,6 @@ const createToken=(id)=>{
         expiresIn:maxAge
     })
 }
-module.exports.toLogin=(req,res)=>{
-    res.render('login')
-}
-module.exports.toRegister=(req,res)=>{
-    res.render('register')
-}
 
 module.exports.login=async (req,res)=>{
     const {email, password}=req.body
@@ -52,6 +46,7 @@ module.exports.login=async (req,res)=>{
 module.exports.register=async (req,res)=>{
     //const{name, email, password,userType,bloodGroup,height,weight,licence, gender,state,zip,city}=req.body
     try{
+        console.log(req.body)
         const user= await User.create({...req.body})
         const token=createToken(user._id)
         res.cookie('jwtCookie',token,{httpOnly:true, maxAge:maxAge*1000})
