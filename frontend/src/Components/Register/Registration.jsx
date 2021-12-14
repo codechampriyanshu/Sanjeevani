@@ -35,12 +35,13 @@ export default function Registration() {
         let fileReader = new FileReader()
         fileReader.onload =fileLoadedEvent =>{
           let srcData = fileLoadedEvent.target.result; // <--- data: base64
-          setFormdata({...formdata,photo:[srcData]})
+          setFormdata({...formdata,photo:srcData})
         }
         fileReader.readAsDataURL(image);
       }
   }
 
+    const [logged,setLogged]=useState("")
     return (
         <div className="mt-10 sm:mt-0">
             <div className="my-3 text-3xl font-bold text-center">
@@ -135,9 +136,7 @@ export default function Registration() {
               <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                 <label htmlFor="postal_code" className="block text-sm font-medium text-gray-700">ZIP / Postal</label>
                 <input type="number" onChange={(e)=>handleChange(e,"zip")} onBlur={async function(){
-                          setFormdata({...formdata,city:[await getCity(formdata.zip)],
-                            state:[await getState(formdata.zip)]}
-                          )
+                          setFormdata({...formdata,city:await getCity(formdata.zip),state:await getState(formdata.zip)})
                           setVillages(await getVillages(formdata.zip))}} name="postal_code" id="postal_code" autoComplete="postal-code" className="block w-full mt-1 border-gray-900 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
               </div>
 
