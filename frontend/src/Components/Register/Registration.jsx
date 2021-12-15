@@ -27,7 +27,7 @@ export default function Registration({person,setPerson}) {
     const navigate=useNavigate()
     useEffect(()=>{
       if(person!=="")
-      navigate(`/profile/${person}`)
+      navigate(`/profile`)
     },[person])
     
     function handleChange(e,field){     //function to handle all the inputs, except image

@@ -10,7 +10,7 @@ export default function Log() {
       password:passwordRef.current.value,
     })
     console.log(emailRef.current.value,passwordRef.current.value)
-    fetch("http://localhost:8000/login",{
+    fetch("http://localhost:8080/login",{
       method:'POST',
       headers: {
         'Content-Type': 'application/json'

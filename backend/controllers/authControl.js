@@ -54,7 +54,7 @@ module.exports.register=async (req,res)=>{
         console.log(req.body)
         const user= await User.create({...req.body})
         const token=createToken(user._id)
-        res.cookie('jwtCookie',token,{httpOnly:true, maxAge:maxAge*1000})
+        res.cookie('jwtCookie',token,{httpOnly:false, maxAge:maxAge*1000})
         res.status(201).json({user:user._id})
     }
     catch(err){

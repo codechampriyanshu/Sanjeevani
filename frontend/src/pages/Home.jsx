@@ -11,7 +11,7 @@ export default function Home({person, setPerson}) {
             .find(row => row.startsWith('jwtCookie='))
             .split('=')[1]
             console.log(x) */
-            fetch("http://localhost:8080/checkUser",{               //mathapachchiiii
+            fetch("http://localhost:8080/checkUser",{              
                 method:'GET',
                 credentials: 'include',
                 /* headers: {
@@ -26,6 +26,7 @@ export default function Home({person, setPerson}) {
             })
             .catch((e)=>console.log(e))
         },[])
+        
       const [toggle,setToggle]=useState(false)
     return (
         <div onFocus={()=>{setToggle(false)}} className="bg-custom-muted">

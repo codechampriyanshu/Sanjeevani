@@ -13,7 +13,6 @@ function App() {
         <Route path='/' element={<Home person={person} setPerson={setPerson}/>}></Route>
         <Route path='/login' element={<Log setPerson={setPerson}/>}></Route>
         <Route path='/register' element={<Registration person={person} setPerson={setPerson}/>}></Route>
-        <Route path="/profile/:id" element={<Profile person={person}/>} />
         <Route path='/profile' element={<Profile person={person}/>}></Route>
       </Routes>
     </Router>
