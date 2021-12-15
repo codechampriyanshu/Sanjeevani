@@ -38,7 +38,8 @@ export default function Services() {
                         <FaBookMedical className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3" onClick={()=>setActive("MediHistory")}/>
                         <span className="w-8 h-8 mr-12 text-sm md:text-base lg:text-lg ">MediHistory</span>
                     </div>
-                    <div className="flex flex-col items-center justify-center">
+                    <div className="shadow-lg w-24 h-24  
+                    rounded-lg flex flex-col items-center justify-center">
                         <FaUserPlus className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
                         <span className="pb-3 text-sm md:text-base lg:text-lg ">Appointment</span>
                     </div>

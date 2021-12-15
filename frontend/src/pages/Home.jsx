@@ -22,8 +22,8 @@ export default function Home({person, setPerson}) {
         
       const [toggle,setToggle]=useState(false)
     return (
-        <div onFocus={()=>{setToggle(false)}} className="bg-custom-muted">
-            <Navbar toggle={toggle} setToggle={setToggle}/>
+        <div onFocus={()=>{setToggle(false)}} className="bg-custom-muted" id="Home">
+            <Navbar toggle={toggle} setToggle={setToggle} person={person}/>
             <Landing/>
             <Tools/>
             <Testimonials/>
