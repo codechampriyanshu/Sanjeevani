@@ -1,11 +1,13 @@
 const express=require('express')
 const mongoose=require('mongoose')
+const cookieParser=require('cookie-parser')
 const app=express()
 const {register,login} = require('./controllers/authControl')
 const {checkUser} =require('./middlewares/authMiddleware')
 require('dotenv').config()
 const MONGO_URI=process.env.MONGO_URI
 
+app.use(cookieParser())
 app.use(express.json())   
 app.use(function(req, res, next) {             
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
