@@ -29,19 +29,16 @@ const checkUser=async(req,res)=>{
         jwt.verify(token,JWT_SECRET,async(err,decodedToken)=>{
             if(err){
                 console.log(err.message)
-                res.json({user:""})
-                return;           
+                res.status(404).json({user:""})
             }
             else{
                 let user=await User.findById(decodedToken.id)
-                res.json({user:user._id})
-                return;
+                res.status(200).json({user:user._id})
             }
         })
     }
     else{
-        res.json({user:""})
-        return;           
+        res.status(404).json({user:""})
     }
 }
 
