@@ -10,6 +10,7 @@ import Navbar from '../Navbar/Nav'
 import Footer from '../Footer/Footer'
 import General from './General';
 import {MediHistory} from './MediHistory'
+import  Appointments from './Appointments';
 export default function Services() {
     const [click,setclick]=useState(false)
     const [toggle,setToggle]=useState(false)
@@ -28,19 +29,19 @@ export default function Services() {
                 <BsBoxArrowRight onClick={handClick} className="w-8 h-8 text-black-800" />
             </div>
             <div className='grid grid-cols-10'>
-                <div className={(click?"translate-x-1 ":"-translate-x-72 ")+`duration-500 col-span-2 md:translate-x-0 transform p-3 m-3 font-semibold `}>
+                <div className={(click?"translate-x-1 ":"-translate-x-72 ")+`duration-500 mt-2 col-span-2 md:translate-x-0 transform p-3 m-3 font-semibold `}>
                     <div className="flex flex-col items-center justify-center">
                         <MdContacts className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3" onClick={()=>setActive("General")}/>
                         <span className='text-sm md:text-base lg:text-lg '>General</span>
                     </div>
 
                     <div className="flex flex-col items-center justify-center pt-3">
-                        <FaBookMedical className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3" onClick={()=>setActive("MediHistory")}/>
+                        <FaBookMedical className="w-8 h-8 mt-2 text-blue-700 md:mb-2 lg:mb-3" onClick={()=>setActive("MediHistory")}/>
                         <span className="w-8 h-8 mr-12 text-sm md:text-base lg:text-lg ">MediHistory</span>
                     </div>
                     <div className="flex flex-col items-center justify-center">
-                        <FaUserPlus className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
-                        <span className="pb-3 text-sm md:text-base lg:text-lg ">Appointment</span>
+                        <FaUserPlus className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3" onClick={()=>setActive("Appointments")}/>
+                        <span className="pb-3 text-sm md:text-base lg:text-lg ">Appointments</span>
                     </div>
                     <div className="flex flex-col items-center justify-center">
                         <BiLocationPlus className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3 items "/>
@@ -52,10 +53,7 @@ export default function Services() {
                         <span className="pb-3 text-sm md:text-base lg:text-lg ">Pathology</span>
 
                     </div>
-                    <div className="flex flex-col items-center justify-center">
-                        <FiUsers className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
-                        <span className="pb-3 text-sm md:text-base lg:text-lg ">New Appo</span>
-                    </div>
+                    
                     <div className="flex flex-col items-center justify-center">
                         <SiGooglemaps className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
                         <span className="pb-3 text-sm md:text-base lg:text-lg ">Location map</span>
@@ -69,6 +67,7 @@ export default function Services() {
                 <div className="col-span-8 m-8 md:col-span-7 bg-gray-50">
                 {active==="General" && <General/>}
                 {active==="MediHistory" && <MediHistory/>}
+                {active==="Appointments" && <Appointments/>}
                 </div>
             </div>
       </div>
