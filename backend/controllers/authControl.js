@@ -1,5 +1,7 @@
 const User=require('../models/user')
 const jwt=require('jsonwebtoken')
+const express=require('express')
+const cookieParser = require('cookie-parser')
 require("dotenv").config()
 const JWT_SECRET=process.env.JWT_SECRET
 const handleErrors=(err)=>{
@@ -20,6 +22,9 @@ const handleErrors=(err)=>{
         Object.values(err.errors).forEach(({properties})=>{
             errors[properties.path]=properties.message
         })
+    }
+    if(err.message.includes('PayloadTooLargeError')){
+        errors.image="image file too large"
     }
     return errors
 }

@@ -1,9 +1,11 @@
 import React from 'react'
 import Services from '../Components/Patient/Services'
-export default function Profile() {
+import Login from '../Components/Login/Log'
+export default function Profile({person}) {
     return (
         <div>
-            <Services/>
+            {person===""? <Login/> :  <Services person={person}/>}
+           
             
         </div>
     )
