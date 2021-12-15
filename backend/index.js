@@ -7,10 +7,11 @@ const MONGO_URI=process.env.MONGO_URI
 
 app.use(express.json())   
 app.use(function(req, res, next) {             
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+  res.setHeader("Access-Control-Allow-Origin", "*")
+  res.setHeader('Access-Control-Allow-Methods', '*')
+  res.setHeader("Access-Control-Allow-Headers", "*")
+  next()
+  })
 
   mongoose.connect(MONGO_URI)
   .then(()=>console.log("connected to database"))
