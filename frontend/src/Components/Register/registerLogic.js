@@ -1,4 +1,4 @@
-export function handleSubmit(e,formdata,logged,setLogged){
+export function handleSubmit(e,formdata,person,setPerson){
     e.preventDefault()
     if(formdata.password!==formdata.confirmPassword){
         alert("passwords do not match..","type again")
@@ -7,6 +7,7 @@ export function handleSubmit(e,formdata,logged,setLogged){
     const text=JSON.stringify(formdata)
     fetch("http://localhost:8080/register",{
     method:'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json'
       // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -14,8 +15,8 @@ export function handleSubmit(e,formdata,logged,setLogged){
     body:text,
   }).then(res=>res.json())
   .then((res)=>{
-    if(res.status===201 || res.status===200){
-      setLogged(res.user)
+    if(res && res.user){
+      setPerson(res.user)
       console.log(res.user)
     }
     else if(res.errors){

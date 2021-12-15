@@ -1,7 +1,7 @@
 import React, {useEffect ,useRef, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import {handleSubmit,getCity, getState,getVillages} from './registerLogic'
-export default function Registration() {
+export default function Registration({person,setPerson}) {
   const [villages,setVillages]=useState([])
     const [formdata,setFormdata]=useState({
       userType:"patient",
@@ -23,11 +23,10 @@ export default function Registration() {
     })
     const [user,setUser]=useState("patient")
     const navigate=useNavigate()
-    const [logged,setLogged]=useState("")
     useEffect(()=>{
-      if(logged!=="")
-      navigate("http://localhost:3000/")
-    },[logged])
+      if(person!=="")
+      navigate(`/profile/${person}`)
+    },[person])
     
     function handleChange(e,field){     //function to handle all the inputs, except image
         setFormdata({...formdata,[field]:e.target.value})
@@ -180,7 +179,7 @@ export default function Registration() {
             </div>
           </div>
           <div className="px-4 py-3 text-right bg-gray-50 sm:px-6">
-            <button type="submit" onClick={(e)=>handleSubmit(e,formdata,logged,setLogged)} className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button type="submit" onClick={(e)=>handleSubmit(e,formdata,person,setPerson)} className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Register
             </button>
           </div>
