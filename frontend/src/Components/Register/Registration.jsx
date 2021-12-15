@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react'
+import React, {useEffect ,useRef, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import {handleSubmit,getCity, getState,getVillages} from './registerLogic'
 export default function Registration() {
   const [villages,setVillages]=useState([])
@@ -20,8 +21,14 @@ export default function Registration() {
       zip:"",
       photo:""
     })
-     const [user,setUser]=useState("patient")
-
+    const [user,setUser]=useState("patient")
+    const navigate=useNavigate()
+    const [logged,setLogged]=useState("")
+    useEffect(()=>{
+      if(logged!=="")
+      navigate("http://localhost:3000/")
+    },[logged])
+    
     function handleChange(e,field){     //function to handle all the inputs, except image
         setFormdata({...formdata,[field]:e.target.value})
     }
@@ -41,7 +48,6 @@ export default function Registration() {
       }
   }
 
-    const [logged,setLogged]=useState("")
     return (
         <div className="mt-10 sm:mt-0">
             <div className="my-3 text-3xl font-bold text-center">
@@ -163,7 +169,7 @@ export default function Registration() {
 
 
               <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                <label htmlFor="photo" className="block text-sm font-medium text-gray-700">Upload Photo</label>
+                <label htmlFor="photo" className="block text-sm font-medium text-gray-700">Upload Photo (max size:50kb)</label>
                 <input type="file" accept='image/*' ref={imageRef} name="photo" onChange={(e)=>handleImage()} id="photo" className="block w-full mt-1 border-gray-900 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"/>
               </div>
                 
@@ -174,7 +180,7 @@ export default function Registration() {
             </div>
           </div>
           <div className="px-4 py-3 text-right bg-gray-50 sm:px-6">
-            <button type="submit" onClick={(e)=>handleSubmit(e,formdata)} className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button type="submit" onClick={(e)=>handleSubmit(e,formdata,logged,setLogged)} className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Register
             </button>
           </div>

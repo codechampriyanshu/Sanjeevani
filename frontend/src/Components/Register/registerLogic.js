@@ -1,4 +1,4 @@
-export function handleSubmit(e,formdata){
+export function handleSubmit(e,formdata,logged,setLogged){
     e.preventDefault()
     if(formdata.password!==formdata.confirmPassword){
         alert("passwords do not match..","type again")
@@ -14,17 +14,20 @@ export function handleSubmit(e,formdata){
     body:text,
   }).then(res=>res.json())
   .then((res)=>{
-    if(res.status===201){
+    if(res.status===201 || res.status===200){
+      setLogged(res.user)
       console.log(res.user)
-      return res.user;
     }
     else if(res.errors){
       console.log(res.errors.email, res.errors.password)
-      window.alert(`Error: ${res.errors.email}`,res.errors.password)
+      window.alert(`Error: ${res.errors.email}`,res.errors.password,res.errors.image)
     }
   })
-  .catch((e)=>window.alert(e))
-  return false;
+  .catch((e)=>{
+    if(e.status===413)
+      window.alert("image file too large")
+    else
+      window.alert(e)})
 }
 
 export async function getCity(zip){
@@ -32,7 +35,7 @@ export async function getCity(zip){
           .then((res)=>res.json())
           .catch((e)=>console.log(e))
 
-    if(response[0].Status==="Error"){
+    if(!response || response[0].Status==="Error"){
       window.alert("no city found with entered zip")
       return "not found"
     }
@@ -45,7 +48,7 @@ export async function getState(zip){
         .then((res)=>res.json())
         .catch((e)=>console.log(e))
       
-        if(response[0].Status==="Error"){
+        if(!response || response[0].Status==="Error"){
           window.alert("no state found with entered zip")
           return "not found"
         }
@@ -59,9 +62,9 @@ export async function getVillages(zip){
         .then((res)=>res.json())
         .catch((e)=>console.log(e))
       
-        if(response[0].Status==="Error"){
-          window.alert("no state found with entered zip")
-          return "not found"
+        if(!response || response[0].Status==="Error"){
+          window.alert("no village found with entered zip")
+          return ["not found"]
         }
       response[0].PostOffice.forEach((item)=>village.push(item.Name))
       console.log(village)

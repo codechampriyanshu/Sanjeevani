@@ -21,6 +21,9 @@ const handleErrors=(err)=>{
             errors[properties.path]=properties.message
         })
     }
+    if(err.message.includes('PayloadTooLargeError')){
+        errors.image="image file too large"
+    }
     return errors
 }
 const maxAge= 3*24*60*60
