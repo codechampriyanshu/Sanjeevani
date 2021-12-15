@@ -17,13 +17,8 @@ export function handleSubmit(e,formdata,person,setPerson){
     body:text,
   }).then(res=>res.json())
   .then((res)=>{
-<<<<<<< HEAD
-    if(res.status===201){
-      setLogged(res.user)
-=======
     if(res && res.user){
       setPerson(res.user)
->>>>>>> 234fd18260f58eb17120ce9f689e80b4a839f6af
       console.log(res.user)
     }
     else if(res.errors){
@@ -77,4 +72,5 @@ export async function getVillages(zip){
       response[0].PostOffice.forEach((item)=>village.push(item.Name))
       console.log(village)
       return village
+}
 }

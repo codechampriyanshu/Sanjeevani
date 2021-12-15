@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 import React, { useEffect, useRef, useState } from 'react'
-=======
 import React, {useEffect ,useRef, useState } from 'react'
->>>>>>> 234fd18260f58eb17120ce9f689e80b4a839f6af
 import {useNavigate} from 'react-router-dom'
 import {handleSubmit,getCity, getState,getVillages} from './registerLogic'
 export default function Registration({person,setPerson}) {
@@ -52,14 +50,11 @@ export default function Registration({person,setPerson}) {
       }
   }
 
-<<<<<<< HEAD
   useEffect(()=>{
     if(logged!=="")
       navigate(`/${logged}`)
   },[logged])
 
-=======
->>>>>>> 234fd18260f58eb17120ce9f689e80b4a839f6af
     return (
         <div className="mt-10 sm:mt-0">
             <div className="my-3 text-3xl font-bold text-center">
@@ -192,11 +187,7 @@ export default function Registration({person,setPerson}) {
             </div>
           </div>
           <div className="px-4 py-3 text-right bg-gray-50 sm:px-6">
-<<<<<<< HEAD
-            <button type="submit" onClick={(e)=>handleSubmit(e,formdata,setLogged)} className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-=======
             <button type="submit" onClick={(e)=>handleSubmit(e,formdata,person,setPerson)} className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
->>>>>>> 234fd18260f58eb17120ce9f689e80b4a839f6af
               Register
             </button>
           </div>
