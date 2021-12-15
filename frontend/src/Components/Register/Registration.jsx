@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import {handleSubmit,getCity, getState,getVillages} from './registerLogic'
 export default function Registration() {
   const [villages,setVillages]=useState([])
@@ -24,10 +25,11 @@ export default function Registration() {
 
     function handleChange(e,field){     //function to handle all the inputs, except image
         setFormdata({...formdata,[field]:e.target.value})
-    }
-
+      }
+      
+      const [logged,setLogged]=useState("")
     const imageRef=useRef();
-
+      const navigate=useNavigate()
     function handleImage() {         //function to handle the image input
       const image=imageRef.current.files[0]
 
@@ -41,7 +43,11 @@ export default function Registration() {
       }
   }
 
-    const [logged,setLogged]=useState("")
+  useEffect(()=>{
+    if(logged!=="")
+      navigate(`/${logged}`)
+  },[logged])
+
     return (
         <div className="mt-10 sm:mt-0">
             <div className="my-3 text-3xl font-bold text-center">
@@ -174,7 +180,7 @@ export default function Registration() {
             </div>
           </div>
           <div className="px-4 py-3 text-right bg-gray-50 sm:px-6">
-            <button type="submit" onClick={(e)=>handleSubmit(e,formdata)} className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button type="submit" onClick={(e)=>handleSubmit(e,formdata,setLogged)} className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Register
             </button>
           </div>

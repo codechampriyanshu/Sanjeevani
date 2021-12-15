@@ -1,4 +1,4 @@
-export function handleSubmit(e,formdata){
+export function handleSubmit(e,formdata,setLogged){
     e.preventDefault()
     if(formdata.password!==formdata.confirmPassword){
         alert("passwords do not match..","type again")
@@ -15,6 +15,7 @@ export function handleSubmit(e,formdata){
   }).then(res=>res.json())
   .then((res)=>{
     if(res.status===201){
+      setLogged(res.user)
       console.log(res.user)
       return res.user;
     }
