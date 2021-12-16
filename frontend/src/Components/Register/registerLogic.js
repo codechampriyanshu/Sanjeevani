@@ -10,7 +10,6 @@ export function handleSubmit(e,formdata,person,setPerson){
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
     },
     body:text,
   }).then(res=>res.json())

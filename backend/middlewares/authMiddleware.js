@@ -23,7 +23,7 @@ const requireAuth=(req,res,next)=>{
 }
 
 const checkUser=async(req,res)=>{
-    console.log(req.cookies)
+   // console.log(req.cookies)
     const token=await req.cookies.jwtCookie
     if(token){
         jwt.verify(token,JWT_SECRET,async(err,decodedToken)=>{

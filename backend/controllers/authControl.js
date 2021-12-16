@@ -1,9 +1,9 @@
 const User=require('../models/user')
 const jwt=require('jsonwebtoken')
-const express=require('express')
-const cookieParser = require('cookie-parser')
 require("dotenv").config()
 const JWT_SECRET=process.env.JWT_SECRET
+
+//creating errors
 const handleErrors=(err)=>{
     console.log(err.message,err.code)
     let errors={email:'',password: ''}
@@ -35,6 +35,7 @@ const createToken=(id)=>{
     })
 }
 
+//login ->
 module.exports.login=async (req,res)=>{
     const {email, password}=req.body
     try{
@@ -48,8 +49,9 @@ module.exports.login=async (req,res)=>{
         res.status(400).json({errors})
     }
 }
+
+//register ->
 module.exports.register=async (req,res)=>{
-    //const{name, email, password,userType,bloodGroup,height,weight,licence, gender,state,zip,city}=req.body
     try{
         console.log(req.body)
         const user= await User.create({...req.body})
@@ -62,6 +64,8 @@ module.exports.register=async (req,res)=>{
         res.status(400).json({errors})
     }
 }
+
+//logout ->
 module.exports.logout=(req,res)=>{
     res.cookie('jwtCookie','',{maxAge:1})
     res.redirect('/')
