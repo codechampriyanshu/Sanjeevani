@@ -9,7 +9,7 @@ export function handleSubmit(e,email,password,person,setPerson) {
     body:JSON.stringify({email,password}),
   }).then(res=>res.json())
     .then(res=>{
-          console.log(res.user)
-          setPerson("res.user")})
+          sessionStorage.setItem("user",res.user)
+          setPerson(res.user)})
   .catch((e)=>console.log(e.message))
 }
