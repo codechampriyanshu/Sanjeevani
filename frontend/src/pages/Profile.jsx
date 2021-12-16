@@ -4,7 +4,8 @@ import Login from '../Components/Login/Log'
 export default function Profile({person}) {
     return (
         <div>
-            {person===""? <Login/> :  <Services person={person}/>}
+            {/* {person===""? <Login/> :  <Services person={person}/>} */}
+            <Services/>
            
             
         </div>

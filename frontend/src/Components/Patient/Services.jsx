@@ -11,6 +11,7 @@ import Footer from '../Footer/Footer'
 import General from './General';
 import {MediHistory} from './MediHistory'
 import  Appointments from './Appointments';
+import Location from './Location';
 export default function Services() {
     const [click,setclick]=useState(false)
     const [toggle,setToggle]=useState(false)
@@ -22,7 +23,7 @@ export default function Services() {
     return (
         <div onFocus={()=>{setToggle(false)
             setclick(false)
-        }} >
+        }}>
             <Navbar toggle={toggle} user={"user"} setToggle={setToggle}/>
         <div className="mt-14">
             <div className='ml-4 md:hidden'>
@@ -55,7 +56,7 @@ export default function Services() {
                     </div>
                     
                     <div className="flex flex-col items-center justify-center">
-                        <SiGooglemaps className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
+                        <SiGooglemaps className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3" onClick={()=>setActive("Location")}/>
                         <span className="pb-3 text-sm md:text-base lg:text-lg ">Location map</span>
                     </div>
                     <div className="flex flex-col items-center justify-center">
@@ -68,6 +69,7 @@ export default function Services() {
                 {active==="General" && <General/>}
                 {active==="MediHistory" && <MediHistory/>}
                 {active==="Appointments" && <Appointments/>}
+                {active==="Location" && <Location/>}
                 </div>
             </div>
       </div>

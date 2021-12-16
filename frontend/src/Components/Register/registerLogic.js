@@ -1,5 +1,4 @@
 
-export function handleSubmit(e,formdata,setLogged){
 export function handleSubmit(e,formdata,person,setPerson){
     e.preventDefault()
     if(formdata.password!==formdata.confirmPassword){
@@ -72,5 +71,4 @@ export async function getVillages(zip){
       response[0].PostOffice.forEach((item)=>village.push(item.Name))
       console.log(village)
       return village
-}
 }

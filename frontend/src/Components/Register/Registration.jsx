@@ -1,5 +1,4 @@
 
-import React, { useEffect, useRef, useState } from 'react'
 import React, {useEffect ,useRef, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import {handleSubmit,getCity, getState,getVillages} from './registerLogic'
@@ -36,7 +35,6 @@ export default function Registration({person,setPerson}) {
       
       const [logged,setLogged]=useState("")
     const imageRef=useRef();
-      const navigate=useNavigate()
     function handleImage() {         //function to handle the image input
       const image=imageRef.current.files[0]
 
