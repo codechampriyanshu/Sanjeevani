@@ -11,14 +11,13 @@ export function handleSubmit(e,formdata,person,setPerson){
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
     },
     body:text,
   }).then(res=>res.json())
   .then((res)=>{
     if(res && res.user){
       setPerson(res.user)
-      console.log(res.user)
+      sessionStorage.setItem("user",res.user)
     }
     else if(res.errors){
       console.log(res.errors.email, res.errors.password)

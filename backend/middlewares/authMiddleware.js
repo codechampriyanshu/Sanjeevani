@@ -23,25 +23,22 @@ const requireAuth=(req,res,next)=>{
 }
 
 const checkUser=async(req,res)=>{
-    console.log(req.cookies)
+   // console.log(req.cookies)
     const token=await req.cookies.jwtCookie
     if(token){
         jwt.verify(token,JWT_SECRET,async(err,decodedToken)=>{
             if(err){
                 console.log(err.message)
-                res.json({user:""})
-                return;           
+                res.status(404).json({user:""})
             }
             else{
                 let user=await User.findById(decodedToken.id)
-                res.json({user:user._id})
-                return;
+                res.status(200).json({user:user._id})
             }
         })
     }
     else{
-        res.json({user:""})
-        return;           
+        res.status(404).json({user:""})
     }
 }
 
