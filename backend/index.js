@@ -26,5 +26,7 @@ app.post('/register',(req,res)=>register(req,res))
 
 app.post('/login',(req,res)=>login(req,res))
 
+app.post('/user',(req,res)=>getUser(req,res))
+
 //l90m7KdXFej4Ed4G
 app.listen(8080,()=>{console.log("server started")})

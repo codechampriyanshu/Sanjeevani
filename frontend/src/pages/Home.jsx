@@ -6,11 +6,10 @@ import Testimonials from '../Components/Testimonials/Testimonials'
 import Tools from '../Components/Tools/Tools'
 export default function Home({person, setPerson}) {
         
-        
       const [toggle,setToggle]=useState(false)
     return (
         <div onFocus={()=>{setToggle(false)}} className="bg-custom-muted" id="Home">
-            <Navbar toggle={toggle} setToggle={setToggle} person={person}/>
+            <Navbar toggle={toggle} setToggle={setToggle} person={person} setPerson={setPerson}/>
             <Landing/>
             <Tools/>
             <Testimonials/>

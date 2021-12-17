@@ -7,21 +7,21 @@ export default function Footer() {
         <div className="flex flex-col justify-around text-xs xs:text-sm between:text-base sm:flex-row sm:text-lg lg:text-xl">
             <div className="flex flex-col mt-1 text-center">
                 <h3 className="text-sm font-semibold sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">Quick Links</h3>
-                <Link to="https://www.nhsinform.scot/search?q=cancer&locpt=&ds=&tab=inform" >Diseases info</Link>
+                <Link to="https://www.nhsinform.scot/" >Diseases info</Link>
                 <Link to="">Emergency</Link>
                 <Link to="">check health</Link>
             </div>
             <div className="flex flex-col mt-2 text-center">
                 <h3 className="text-sm font-semibold sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">Quick Tools</h3>
-                <Link to="#" >BMI calculator</Link>
+                <Link to="https://www.calculator.net/bmi-calculator.html" >BMI calculator</Link>
                 <Link to=""> Symptoms</Link>
                 <Link to=""> Guide</Link>
             </div>
             <div className="flex-col hidden mt-2 text-center sm:flex">
                 <h3 className="text-sm font-semibold sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">Creators</h3>
+                <a href="https://github.com/codechampriyanshu">Priyanshu</a>
                 <a href="https://github.com/Ashish-Verma-MNNIT">Ashish Verma</a>
                 <a href="https://github.com/ProgrammingPirates">Dharmendra</a>
-                <a href="https://github.com/codechampriyanshu">Priyanshu</a>
             </div>
             <div className="py-1 text-center sm:flex sm:flex-col ">
                 <span className="mr-2 text-sm font-semibold sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">Feedback:</span>

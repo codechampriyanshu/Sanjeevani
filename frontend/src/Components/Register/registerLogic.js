@@ -31,7 +31,7 @@ export function handleSubmit(e,formdata,person,setPerson){
       window.alert(e)})
 }
 
-export async function getCity(zip){
+export async function getCity(zip){   //TODO : call api only once && don't call if zip is ""
   const response= await fetch(`https://api.postalpincode.in/pincode/${zip}`)
           .then((res)=>res.json())
           .catch((e)=>console.log(e))

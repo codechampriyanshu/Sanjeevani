@@ -4,8 +4,7 @@ const Schema=mongoose.Schema
 const bcrypt=require('bcrypt')
 
 const userSchema= new Schema({
-    firstName:{type:String, required:[true,'please enter your name']},
-    lastName:{type:String, required:[true,'please enter your name']},
+    name:{type:String, required:[true,'please enter your name']},
     email:{type:String,
         required:[true, 'please enter email'],
         unique:true,
