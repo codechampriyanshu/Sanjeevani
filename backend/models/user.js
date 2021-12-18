@@ -16,13 +16,14 @@ const userSchema= new Schema({
         minlength: [6, 'password should be atleast 6 characters long'] 
     },
     userType:{type:String, required:[true,'please choose who you are..']},
-    bloodGroup:{type:String},
-    height:{type:String},
-    weight:{type:String},
-    license:{type:String},
-    gender:{type:String},
+    bloodGroup:String,
+    height:String,
+    weight:String,
+    license:String,
+    gender:String,
+    age:Number,
     zip:{type:Number,required:[true,'enter your zip number']},
-    city:{type:String},
+    city:String,
     photo:{type:String,required:[true,'upload your photo']}
 })
 

@@ -1,6 +1,24 @@
 
 export function handleSubmit(e,formdata,person,setPerson){
     e.preventDefault()
+    // some checks-->
+    if(formdata.user==="patient"){
+      if(formdata.height===""){
+        window.alert("Please enter your height.")
+        return;
+      }else if(formdata.weight===""){
+        window.alert("please enter your weight.")
+        return;
+      }else if(formdata.age===""){
+        window.alert("please enter your age.")
+        return;
+      }
+    }else{
+      if(formdata.licence===""){
+        window.alert("You must write your licence.")
+        return;
+      }
+    }
     if(formdata.password!==formdata.confirmPassword){
         alert("passwords do not match..","type again")
         return;

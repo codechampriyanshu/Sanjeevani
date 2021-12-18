@@ -3,6 +3,7 @@ const mongoose=require('mongoose')
 const cookieParser=require('cookie-parser')
 const app=express()
 const {register,login} = require('./controllers/authControl')
+const {getUser} = require('../backend/controllers/userController')
 const {checkUser} =require('./middlewares/authMiddleware')
 require('dotenv').config()
 const MONGO_URI=process.env.MONGO_URI
@@ -26,7 +27,7 @@ app.post('/register',(req,res)=>register(req,res))
 
 app.post('/login',(req,res)=>login(req,res))
 
-app.post('/user',(req,res)=>getUser(req,res))
+app.get('/user/:id',(req,res)=>getUser(req,res))
 
 //l90m7KdXFej4Ed4G
 app.listen(8080,()=>{console.log("server started")})

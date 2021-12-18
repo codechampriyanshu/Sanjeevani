@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import {handleSubmit,getCity, getState,getVillages} from './registerLogic'
 export default function Registration({person,setPerson}) {
   const [villages,setVillages]=useState([])
-  const [formdata,setFormdata]=useState({userType:"patient", name:"", email:"", password:"", confirmPassword:"", height:"", weight:"", bloodGroup:"O+",   gender:"male", licence:"", street:"", city:"", state:"", zip:"", photo:""})
+  const [formdata,setFormdata]=useState({userType:"patient", name:"", email:"", password:"", confirmPassword:"", height:"", weight:"", bloodGroup:"O+", age:0, gender:"male", licence:"", street:"", city:"", state:"", zip:"", photo:""})
   const [user,setUser]=useState("patient")
   const navigate=useNavigate()
   const [logged,setLogged]=useState("")
@@ -108,14 +108,20 @@ export default function Registration({person,setPerson}) {
                 </select>
               </div>
                 </div>}
-                {(user==="patient" || user==="doctor") && <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="gender" className="block text-gray-700 text-sm font-bold mb-2">Gender</label>
-                <select id="gender" onChange={(e)=>handleChange(e,"gender")} name="gender" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline">
-                  <option value="male" defaultChecked>M</option>
-                  <option value="female">F</option>
-                  <option value="others">others</option>
-                </select>
-                </div>}
+                {(user==="patient" || user==="doctor") && 
+                <>
+                <div className="col-span-6 sm:col-span-3">
+                  <label htmlFor="gender" className="block text-gray-700 text-sm font-bold mb-2">Gender</label>
+                  <select id="gender" onChange={(e)=>handleChange(e,"gender")} name="gender" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline">
+                    <option value="male" defaultChecked>M</option>
+                    <option value="female">F</option>
+                    <option value="others">others</option>
+                  </select>
+                </div>
+                <div className="col-span-6 sm:col-span-3">
+                <label htmlFor="age" className="block text-gray-700 text-sm font-bold mb-2">Age</label>
+                <input type="number" onChange={(e)=>handleChange(e,"age")} name="age" id="age" autoComplete="age" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+              </div></>}
                 {user!=="patient" &&
                     <div className="col-span-6 sm:col-span-3">
                         <label htmlFor="licence" className="block text-gray-700 text-sm font-bold mb-2">Licence</label>
