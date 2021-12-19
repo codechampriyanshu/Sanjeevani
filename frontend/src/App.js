@@ -6,6 +6,9 @@ import Log from './Components/Login/Log';
 import Registration from './Components/Register/Registration';
 import Profile from './pages/Profile';
 import Doctor from './Components/Doctor/Doctor';
+import Test from './Components/Maps/Test';
+
+
 function App() {
 
   const [person,setPerson]=useState("")   //to store identity of user
@@ -33,6 +36,9 @@ function App() {
         <Route path='/login' element={<Log person={person} setPerson={setPerson}/>}></Route>
         <Route path='/register' element={<Registration person={person} setPerson={setPerson}/>}></Route>
         <Route path='/profile' element={<Profile person={person} setPerson={setPerson}/>}></Route>
+
+        {/*testing routes --> */}
+        <Route path='/maps' element={<Test/>}></Route>
       </Routes>
     </Router>
   );

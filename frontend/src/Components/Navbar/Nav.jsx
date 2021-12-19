@@ -24,7 +24,7 @@ export default function Nav({toggle,setToggle,person,setPerson}) {
     fetch("http://localhost:8080/logout")
     .then(res=>res.json())
     .then(res=>{
-        setPerson("");
+        setPerson("")
         sessionStorage.removeItem("user")
         window.alert("successfully logged out..")
       })
@@ -45,14 +45,14 @@ export default function Nav({toggle,setToggle,person,setPerson}) {
         </svg>
       </div>
       <div className={(toggle?"-translate-x-1 ":"translate-x-72 ")+" transform duration-500 flex flex-col pt-12 fixed md:hidden top-0 right-0 h-full w-72 z-40 bg-black text-white opacity-90"}>
+        {person!=="" && <Link className="pt-8 pl-4 text-lg font-bold select-none" to="/profile">My Account</Link>}
         {person==="" ?(<>
           <Link className="pt-8 pl-4 text-lg font-bold select-none" to="/login">Login</Link>
           <Link className="pt-8 pl-4 text-lg font-bold select-none" to="/register">Sign up</Link>
-          </>) : <Link className="pt-8 pl-4 text-lg font-bold select-none" to="/logout" onClick={logout}>Log Out</Link> }
+          </>) : <Link className="pt-8 pl-4 text-lg font-bold select-none" to="/" onClick={logout}>Log Out</Link> }
         <HashLink className="pt-8 pl-4 text-lg font-bold select-none" to="/#Home">Home</HashLink>
         <HashLink className="pt-8 pl-4 text-lg font-bold select-none" to="/#Tools">Tools</HashLink>
         <HashLink className="pt-8 pl-4 text-lg font-bold select-none" to="/#Testimonials">Testimonials</HashLink>
-        {person!=="" && <Link className="pt-8 pl-4 text-lg font-bold select-none" to="/appointments">My Account</Link>}
         <Link className="pt-8 pl-4 text-lg font-bold select-none" to="/about">About</Link>
         <Link className="pt-8 pl-4 text-lg font-bold select-none" to="/help">Help</Link>
       </div>
