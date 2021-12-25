@@ -11,7 +11,7 @@ import Footer from '../Footer/Footer'
 import General from './General';
 import {MediHistory} from './MediHistory'
 import  Appointments from './Appointments';
-import Location from './Location';
+import { Link } from 'react-router-dom';
 export default function Services() {
     const [click,setclick]=useState(false)
     const [toggle,setToggle]=useState(false)
@@ -31,45 +31,44 @@ export default function Services() {
             </div>
             <div className='grid grid-cols-10'>
                 <div className={(click?"translate-x-1 ":"-translate-x-72 ")+`duration-500 mt-2 col-span-2 md:translate-x-0 transform p-3 m-3 font-semibold `}>
-                    <div className="flex flex-col items-center justify-center">
-                        <MdContacts className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3" onClick={()=>setActive("General")}/>
+                    <Link to="" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md" onClick={()=>setActive("General")}>
+                        <MdContacts className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3" />
                         <span className='text-sm md:text-base lg:text-lg '>General</span>
-                    </div>
+                    </Link>
 
-                    <div className="flex flex-col items-center justify-center pt-3">
-                        <FaBookMedical className="w-8 h-8 mt-2 text-blue-700 md:mb-2 lg:mb-3" onClick={()=>setActive("MediHistory")}/>
-                        <span className="w-8 h-8 mr-12 text-sm md:text-base lg:text-lg ">MediHistory</span>
-                    </div>
-                    <div className="flex flex-col items-center justify-center w-24 h-24 rounded-lg shadow-lg">
+                    <Link to="" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md" onClick={()=>setActive("MediHistory")}>
+                        <FaBookMedical className="w-8 h-8 mt-2 text-blue-700 md:mb-2 lg:mb-3"/>
+                        <span className="text-sm md:text-base lg:text-lg ">MediHistory</span>
+                    </Link>
+                    <Link to="" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md" onClick={()=>setActive("Appointments")}>
                         <FaUserPlus className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
-                        <span className="pb-3 text-sm md:text-base lg:text-lg ">Appointment</span>
-                    </div>
-                    <div className="flex flex-col items-center justify-center">
+                        <span className="text-sm md:text-base lg:text-lg ">Appointment</span>
+                    </Link>
+                    <Link to="/nearby/clinics" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md">
                         <BiLocationPlus className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3 items "/>
-                        <span className="pb-3 text-sm md:text-base lg:text-lg ">Doctors Near</span>
+                        <Link className="text-sm md:text-base lg:text-lg " to="/nearby">Doctors Nearby</Link>
 
-                    </div>
-                    <div className="flex flex-col items-center justify-center">
+                    </Link>
+                    <Link to="nearby/labs" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md">
                         <FaSyringe className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
-                        <span className="pb-3 text-sm md:text-base lg:text-lg ">Pathology</span>
+                        <span className="text-sm md:text-base lg:text-lg ">Pathology</span>
 
-                    </div>
+                    </Link>
                     
-                    <div className="flex flex-col items-center justify-center">
-                        <SiGooglemaps className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3" onClick={()=>setActive("Location")}/>
-                        <span className="pb-3 text-sm md:text-base lg:text-lg ">Location map</span>
-                    </div>
-                    <div className="flex flex-col items-center justify-center">
+                    <Link to="/nearby/hospitals" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md">
+                        <SiGooglemaps className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
+                        <span className="text-sm md:text-base lg:text-lg">Hospitals</span>
+                    </Link>
+                    <Link to="" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md">
                         <FaAmbulance className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
-                        <span className='pb-3 text-sm md:text-base lg:text-lg '>Ambulance</span>
-                    </div>
+                        <span className='text-sm md:text-base lg:text-lg '>Ambulance</span>
+                    </Link>
                     
                 </div>
                 <div className="col-span-8 m-8 md:col-span-7 bg-gray-50">
                 {active==="General" && <General/>}
                 {active==="MediHistory" && <MediHistory/>}
                 {active==="Appointments" && <Appointments/>}
-                {active==="Location" && <Location/>}
                 </div>
             </div>
       </div>

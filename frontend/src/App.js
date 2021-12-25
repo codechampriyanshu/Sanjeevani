@@ -5,8 +5,7 @@ import {BrowserRouter as Router,Route,Routes,Navigate} from 'react-router-dom'
 import Log from './Components/Login/Log';
 import Registration from './Components/Register/Registration';
 import Profile from './pages/Profile';
-import Doctor from './Components/Doctor/Doctor';
-import Test from './Components/Maps/Test';
+import Maps from './Components/Maps/Maps';
 
 
 function App() {
@@ -36,9 +35,7 @@ function App() {
         <Route path='/login' element={<Log person={person} setPerson={setPerson}/>}></Route>
         <Route path='/register' element={<Registration person={person} setPerson={setPerson}/>}></Route>
         <Route path='/profile' element={<Profile person={person} setPerson={setPerson}/>}></Route>
-
-        {/*testing routes --> */}
-        <Route path='/maps' element={<Test/>}></Route>
+        <Route path="/nearby/:id" element={<Maps/>}></Route>
       </Routes>
     </Router>
   );

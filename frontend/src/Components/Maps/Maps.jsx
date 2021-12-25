@@ -1,9 +1,11 @@
 import ReactMapGl, { Marker, Popup, GeolocateControl, NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl'
 import React, { useEffect, useState } from 'react'
-import { MdLocalHospital,MdMedicalServices } from 'react-icons/md'
-import {FaClinicMedical} from 'react-icons/fa'
-import {getClinics, getHospitals} from './data'
+import {MdMedicalServices } from 'react-icons/md'
+import {FaClinicMedical,FaMicroscope} from 'react-icons/fa'
+import {getClinics, getHospitals,getPathology} from './data'
+import { useParams } from 'react-router-dom'
 export default function Test() {
+    const params=useParams()
     const [viewport, setViewport] = useState({
         latitude: 25.4358,
         longitude: 81.8463,
@@ -12,8 +14,10 @@ export default function Test() {
         height: '100vh'
     })
     const [loading,setLoading]=useState(true)
+    const [show,setShow]=useState("clinics")
     const [hospitals,setHospitals]=useState(null)
     const [clinics,setClinics]=useState(null)
+    const [pathology,setPathology]=useState(null)
     const [selectedMarker, setSelectedMarker] = useState(null)
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position)=>{
@@ -21,11 +25,13 @@ export default function Test() {
                 ...getHospitals(position.coords.latitude,position.coords.longitude)
             ])
             setClinics([...getClinics(position.coords.latitude,position.coords.longitude)])
+            setPathology([...getPathology(position.coords.latitude,position.coords.longitude)])
         })
         const popupCloser = (e) => {
             if (e.key === "Escape")
                 setSelectedMarker(null)
         }
+        setShow(params.id)
         window.addEventListener("keydown", popupCloser)
         setLoading(false)
         return (() => {
@@ -35,7 +41,7 @@ export default function Test() {
     }, [])
     return (
         <div>
-
+            <div className='absolute z-50 text-xl text-gray-900 bg-gray-100 bottom-1 left-1'>Nearby {show}</div>
             {loading ?<div className='grid w-screen h-screen text-2xl text-green-500 place-items-center'>Loading...</div> : 
             <ReactMapGl {...viewport} mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} className='w-screen h-screen'
                 mapStyle="mapbox://styles/ashish-verma/ckxd3pza5civv15p5nhyn9hif"
@@ -51,21 +57,28 @@ export default function Test() {
                     auto
                 />
 
-                {hospitals && hospitals.map((item) => (
+                {show==="hospitals" && hospitals && hospitals.map((item) => (
                     <Marker latitude={item.position.latitude} longitude={item.position.longitude} >            {/* get data dynamically here and then render the markers */}
                         <MdMedicalServices className='text-xl text-red-500 md:text-2xl' onClick={() => setSelectedMarker(item)} />
                     </Marker>
                 ))}
 
-                {clinics && clinics.map((item) => (
+                {show==="clinics" && clinics && clinics.map((item) => (
                     <Marker latitude={item.position.latitude} longitude={item.position.longitude} >            {/* get data dynamically here and then render the markers */}
                         <FaClinicMedical className='text-xl text-red-500 md:text-2xl' onClick={() => setSelectedMarker(item)} />
+                    </Marker>
+                ))}
+
+                {show==="labs" && pathology && pathology.map((item) => (
+                    <Marker latitude={item.position.latitude} longitude={item.position.longitude} >            {/* get data dynamically here and then render the markers */}
+                        <FaMicroscope className='text-xl text-red-400 md:text-2xl' onClick={() => setSelectedMarker(item)} />
                     </Marker>
                 ))}
 
                 {selectedMarker && <Popup className="bg-gray-200" latitude={selectedMarker.position.latitude} longitude={selectedMarker.position.longitude} onClose={() => setSelectedMarker(null)}>
                     <div className='text-red-400'>{selectedMarker.name}</div>
                     <div className='text-green-500'>{selectedMarker.desc}</div>
+                    <div className='text-blue-500'>Phone:{selectedMarker.phone}</div>
                 </Popup>}
                 <FullscreenControl className='top-32 left-4'></FullscreenControl>
                 <ScaleControl className='bottom-4 right-4'></ScaleControl>

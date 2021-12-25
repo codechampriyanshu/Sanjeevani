@@ -23,13 +23,27 @@ export default function General() {
         <div>
         {loading && <div className='text-xl text-center text-green-500'>Loading...</div>}
         {!loading && user && <div className='flex flex-col items-center w-full font-serif'>
-                    <span className='p-2 md:p-4 font-bold'>{user.userType}</span>
+                    <span className='p-2 font-bold md:p-4'>{user.userType}</span>
                     <img src={user.photo} className='w-24 rounded-lg mt-7 '/>
                     <span className='p-2 md:p-4'>{user.name}</span>
-                    <span className='p-2 md:p-4'>{user.age}, {user.gender}</span>
+                    {user.userType==="patient" && <><span className='p-2 md:p-4'>{user.height}</span>
+                    <span className='p-2 md:p-4'>{user.weight}</span>
+                    <span className='p-2 md:p-4'>{user.bloodGroup}</span></>}
+
+                    {
+                        (user.userType==="doctor" || user.userType==="patient") && <>
+                        <span className='p-2 md:p-4'>{user.gender}</span>
+                        <span className='p-2 md:p-4'>{user.age}</span>
+                        </>
+                    }
+                     {
+                        user.userType!=="patient" && <>
+                        <span className='p-2 md:p-4'>{user.licence}</span>
+                        </>
+                    }
                     <span className='p-2 md:p-4'>{user.city}</span>
+                    <span className='p-2 md:p-4'>{user.phone}</span>
                     <span className='p-2 md:p-4'>{user.email}</span>
-                    <span className='p-2 md:p-4'>{user.bloodGroup}</span>
             </div>}
         </div>
     )
