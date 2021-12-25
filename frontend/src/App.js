@@ -6,6 +6,7 @@ import Log from './Components/Login/Log';
 import Registration from './Components/Register/Registration';
 import Profile from './pages/Profile';
 import Maps from './Components/Maps/Maps';
+import Help from './pages/Help';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route path='/register' element={<Registration person={person} setPerson={setPerson}/>}></Route>
         <Route path='/profile' element={<Profile person={person} setPerson={setPerson}/>}></Route>
         <Route path="/nearby/:id" element={<Maps/>}></Route>
+        <Route path="/help" element={<Help/>}></Route>
       </Routes>
     </Router>
   );

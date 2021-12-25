@@ -7,17 +7,17 @@ export default function Registration({person,setPerson}) {
   const [formdata,setFormdata]=useState({userType:"patient", name:"", email:"", password:"", confirmPassword:"", height:"", weight:"", bloodGroup:"O+", age:0, gender:"male", licence:"", street:"", city:"", state:"", zip:"", photo:""})
   const [user,setUser]=useState("patient")
   const navigate=useNavigate()
-  const [logged,setLogged]=useState("")
+  // const [logged,setLogged]=useState("")
   const imageRef=useRef();
   useEffect(()=>{
     if(person!=="")
     navigate(`/profile`)
   },[person])
   
-  useEffect(()=>{
+ /*  useEffect(()=>{
     if(logged!=="")
-      navigate(`/${logged}`)
-  },[logged])
+      navigate(-1)
+  },[logged]) */
 
   function handleChange(e,field){     //function to handle all the inputs, except image
       setFormdata({...formdata,[field]:e.target.value})
@@ -50,34 +50,34 @@ export default function Registration({person,setPerson}) {
             <div className="grid grid-cols-6 gap-6">
               
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="email_address" className="block text-gray-700 text-sm font-bold mb-2">Email address</label>
-                <input type="text" onChange={(e)=>handleChange(e,"email")} name="email_address" id="email_address" autoComplete="email" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                <label htmlFor="email_address" className="block mb-2 text-sm font-bold text-gray-700">Email address</label>
+                <input type="text" onChange={(e)=>handleChange(e,"email")} name="email_address" id="email_address" autoComplete="email" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
               </div>
               
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="phone" className="block text-gray-700 text-sm font-bold mb-2">Phone</label>
-                <input type="tel" onChange={(e)=>handleChange(e,"phone")} name="phone" id="phone" autoComplete="phone" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                <label htmlFor="phone" className="block mb-2 text-sm font-bold text-gray-700">Phone</label>
+                <input type="tel" onChange={(e)=>handleChange(e,"phone")} name="phone" id="phone" autoComplete="phone" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
               </div>
 
               <div className="col-span-6 sm:col-span-4">
-                <label htmlFor="first_name" className="block text-gray-700 text-sm font-bold mb-2">Name</label>
-                <input type="text" onChange={(e)=>handleChange(e,"name")} name="name" id="name" autoComplete="given-name" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                <label htmlFor="name" className="block mb-2 text-sm font-bold text-gray-700">Name</label>
+                <input type="text" onChange={(e)=>handleChange(e,"name")} name="name" id="name" autoComplete="name" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
               </div>
 
                <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">Create Password</label>
-                <input type="password" onChange={(e)=>handleChange(e,"password")} name="password" id="password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                <label htmlFor="password" className="block mb-2 text-sm font-bold text-gray-700">Create Password</label>
+                <input type="password" onChange={(e)=>handleChange(e,"password")} name="password" id="password" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="confirm_password" className="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
-                <input type="password" onChange={(e)=>handleChange(e,"confirmPassword")} name="confirm_password" id="confirm_password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                <label htmlFor="confirm_password" className="block mb-2 text-sm font-bold text-gray-700">Confirm Password</label>
+                <input type="password" onChange={(e)=>handleChange(e,"confirmPassword")} name="confirm_password" id="confirm_password" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
               </div>
               
 
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="userType" className="block text-gray-700 text-sm font-bold mb-2">You are: </label>
-                <select id="userType" onChange={(e)=>handleChange(e,"userType")} name="userType" value={user} onChange={(e)=>setUser(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline">
+                <label htmlFor="userType" className="block mb-2 text-sm font-bold text-gray-700">You are: </label>
+                <select id="userType" onChange={(e)=>handleChange(e,"userType")} name="userType" value={user} onChange={(e)=>setUser(e.target.value)} className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline">
                   <option value="patient" defaultChecked>Patient</option>
                   <option value="doctor">Doctor</option>
                   <option value="hospital">Hospital</option>
@@ -87,16 +87,16 @@ export default function Registration({person,setPerson}) {
 
             {user==="patient" && <div>
                 <div className="col-span-6 sm:col-span-3">
-                    <label htmlFor="height" className="block text-gray-700 text-sm font-bold mb-2">Height</label>
-                    <input type="text" onChange={(e)=>handleChange(e,"height")} name="height" id="height" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                    <label htmlFor="height" className="block mb-2 text-sm font-bold text-gray-700">Height</label>
+                    <input type="text" onChange={(e)=>handleChange(e,"height")} name="height" id="height" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
                 </div>
                 <div className="col-span-6 sm:col-span-3">
-                    <label htmlFor="weight" className="block text-gray-700 text-sm font-bold mb-2">Weight</label>
-                    <input type="text" onChange={(e)=>handleChange(e,"weight")} name="weight" id="weight" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                    <label htmlFor="weight" className="block mb-2 text-sm font-bold text-gray-700">Weight</label>
+                    <input type="text" onChange={(e)=>handleChange(e,"weight")} name="weight" id="weight" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
                 </div>
                 <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="bloodGroup" className="block text-gray-700 text-sm font-bold mb-2">Blood Group </label>
-                <select id="bloodGroup" onChange={(e)=>handleChange(e,"bloodGroup")} name="bloodGroup" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline">
+                <label htmlFor="bloodGroup" className="block mb-2 text-sm font-bold text-gray-700">Blood Group </label>
+                <select id="bloodGroup" onChange={(e)=>handleChange(e,"bloodGroup")} name="bloodGroup" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline">
                   <option value="O+" defaultChecked>O+</option>
                   <option value="O-">O-</option>
                   <option value="A+">A+</option>
@@ -111,33 +111,33 @@ export default function Registration({person,setPerson}) {
                 {(user==="patient" || user==="doctor") && 
                 <>
                 <div className="col-span-6 sm:col-span-3">
-                  <label htmlFor="gender" className="block text-gray-700 text-sm font-bold mb-2">Gender</label>
-                  <select id="gender" onChange={(e)=>handleChange(e,"gender")} name="gender" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline">
+                  <label htmlFor="gender" className="block mb-2 text-sm font-bold text-gray-700">Gender</label>
+                  <select id="gender" onChange={(e)=>handleChange(e,"gender")} name="gender" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline">
                     <option value="male" defaultChecked>M</option>
                     <option value="female">F</option>
                     <option value="others">others</option>
                   </select>
                 </div>
                 <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="age" className="block text-gray-700 text-sm font-bold mb-2">Age</label>
-                <input type="number" onChange={(e)=>handleChange(e,"age")} name="age" id="age" autoComplete="age" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                <label htmlFor="age" className="block mb-2 text-sm font-bold text-gray-700">Age</label>
+                <input type="number" onChange={(e)=>handleChange(e,"age")} name="age" id="age" autoComplete="age" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
               </div></>}
                 {user!=="patient" &&
                     <div className="col-span-6 sm:col-span-3">
-                        <label htmlFor="licence" className="block text-gray-700 text-sm font-bold mb-2">Licence</label>
-                        <input type="text" onChange={(e)=>handleChange(e,"licence")} name="licence" id="licence" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                        <label htmlFor="licence" className="block mb-2 text-sm font-bold text-gray-700">Licence</label>
+                        <input type="text" onChange={(e)=>handleChange(e,"licence")} name="licence" id="licence" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
                     </div>}
 
               <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                <label htmlFor="postal_code" className="block text-gray-700 text-sm font-bold mb-2">ZIP / Postal</label>
-                <input type="number" onChange={(e)=>handleChange(e,"zip")} onBlur={async function(){
+                <label htmlFor="postal_code" className="block mb-2 text-sm font-bold text-gray-700">ZIP / Postal</label>
+                <input type="number" onChange={(e)=>handleChange(e,"zip")} autoComplete='false' onBlur={async function(){
                           setFormdata({...formdata,city:await getCity(formdata.zip),state:await getState(formdata.zip)})
-                          setVillages(await getVillages(formdata.zip))}} name="postal_code" id="postal_code" autoComplete="postal-code" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                          setVillages(await getVillages(formdata.zip))}} name="postal_code" id="postal_code" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
               </div>
 
               <div className="col-span-6">
-                <label htmlFor="street_address" className="block text-gray-700 text-sm font-bold mb-2">Village/Street</label>
-                <select id="street_address" onChange={(e)=>handleChange(e,"street")} name="street" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline">
+                <label htmlFor="street_address" className="block mb-2 text-sm font-bold text-gray-700">Village/Street</label>
+                <select id="street_address" onChange={(e)=>handleChange(e,"street")} name="street" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline">
                   <option value="" defaultChecked>Choose your village</option>
                   {
                     villages.length!==0 &&
@@ -147,19 +147,19 @@ export default function Registration({person,setPerson}) {
               </div>
 
               <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-                <label htmlFor="city" className="block text-gray-700 text-sm font-bold mb-2">City</label>
-                <input type="text" disabled onChange={(e)=>handleChange(e,"city")} value={formdata.city} name="city" id="city" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                <label htmlFor="city" className="block mb-2 text-sm font-bold text-gray-700">City</label>
+                <input type="text" disabled onChange={(e)=>handleChange(e,"city")} value={formdata.city} name="city" id="city" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
               </div>
 
               <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                <label htmlFor="state" className="block text-gray-700 text-sm font-bold mb-2">State</label>
-                <input type="text" disabled onChange={(e)=>handleChange(e,"state")} value={formdata.state} name="state" id="state" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                <label htmlFor="state" className="block mb-2 text-sm font-bold text-gray-700">State</label>
+                <input type="text" disabled onChange={(e)=>handleChange(e,"state")} value={formdata.state} name="state" id="state" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
               </div>
 
 
               <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                <label htmlFor="photo" className="block text-gray-700 text-sm font-bold mb-2">Upload Photo (max size:50kb)</label>
-                <input type="file" accept='image/*' ref={imageRef} name="photo" onChange={(e)=>handleImage()} id="photo" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:border-indigo-500 leading-tight focus:outline-none focus:shadow-outline"/>
+                <label htmlFor="photo" className="block mb-2 text-sm font-bold text-gray-700">Upload Photo (max size:50kb)</label>
+                <input type="file" accept='image/*' ref={imageRef} name="photo" onChange={(e)=>handleImage()} id="photo" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
               </div>
                 
                 {   //for rendering image-->

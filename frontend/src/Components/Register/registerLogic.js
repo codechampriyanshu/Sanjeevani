@@ -2,7 +2,7 @@
 export function handleSubmit(e,formdata,person,setPerson){
     e.preventDefault()
     // some checks-->
-    if(formdata.user==="patient"){
+    if(formdata.userType==="patient"){
       if(formdata.height===""){
         window.alert("Please enter your height.")
         return;

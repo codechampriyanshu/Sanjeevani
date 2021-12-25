@@ -42,11 +42,11 @@ module.exports.login=async (req,res)=>{
         const user=await User.login(email,password)
         const token=createToken(user._id)
         res.cookie('jwtCookie',token,{httpOnly:true, maxAge:maxAge*1000})
-        res.status(200).json({user:user._id}).end()
+        res.json({status:200,user:user._id}).end()
     }
     catch(err){
         const errors=handleErrors(err)
-        res.status(400).json({errors}).end()
+        res.json({status:400,errors}).end()
     }
 }
 
@@ -57,16 +57,16 @@ module.exports.register=async (req,res)=>{
         const user= await User.create({...req.body})
         const token=createToken(user._id)
         res.cookie('jwtCookie',token,{httpOnly:false, maxAge:maxAge*1000})
-        res.status(201).json({user:user._id}).end()
+        res.json({status:201,user:user._id}).end()
     }
     catch(err){
         const errors=handleErrors(err)
-        res.status(400).json({errors}).end()
+        res.json({status:400,errors}).end()
     }
 }
 
 //logout ->
 module.exports.logout=(req,res)=>{
     res.cookie('jwtCookie','',{maxAge:1})
-    res.status(200).json({message:"successfully logged out"}).end()
+    res.json({status:200, message:"successfully logged out"}).end()
 }

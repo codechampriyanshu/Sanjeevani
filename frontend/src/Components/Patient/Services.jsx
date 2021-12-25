@@ -21,9 +21,7 @@ export default function Services() {
         setclick(!click)
     }
     return (
-        <div onFocus={()=>{setToggle(false)
-            setclick(false)
-        }}>
+        <div>
             <Navbar toggle={toggle} user={"user"} setToggle={setToggle}/>
         <div className="mt-14">
             <div className='ml-4 md:hidden'>
@@ -49,7 +47,7 @@ export default function Services() {
                         <Link className="text-sm md:text-base lg:text-lg " to="/nearby">Doctors Nearby</Link>
 
                     </Link>
-                    <Link to="nearby/labs" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md">
+                    <Link to="/nearby/labs" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md">
                         <FaSyringe className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
                         <span className="text-sm md:text-base lg:text-lg ">Pathology</span>
 
