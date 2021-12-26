@@ -4,7 +4,10 @@ import {HashLink } from 'react-router-hash-link'
 
 export default function Nav({toggle,setToggle,person,setPerson}) {
   function logout(){
-    fetch("http://localhost:8080/logout")
+    fetch("http://localhost:8080/logout",{
+    method:'GET',
+    credentials: 'include',
+  })
     .then(res=>res.json())
     .then(res=>{
       if(res.status===200)
@@ -15,7 +18,7 @@ export default function Nav({toggle,setToggle,person,setPerson}) {
     )
       .catch((e)=>{
         console.log(e)
-        window.alert("Could not log out. try again later..")
+        window.alert("could not log out.. try again later")
       })
   }
   function handleClick(){

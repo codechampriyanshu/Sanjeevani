@@ -44,7 +44,7 @@ module.exports.login=async (req,res)=>{
         if(!user.verified)
             return res.json({status:404,message:"account not verified"})
         const token=createToken(user._id)
-        res.cookie('jwtCookie',token,{httpOnly:true, maxAge:maxAge*1000})
+        res.cookie('jwtCookie',token,{httpOnly:false, maxAge:maxAge*1000})
         res.json({status:200,user:user._id}).end()
     }
     catch(err){
@@ -56,7 +56,7 @@ module.exports.login=async (req,res)=>{
 //register ->
 module.exports.register=async (req,res)=>{
     try{
-        console.log(req.body)
+        // console.log(req.body)
         const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         let code = '';
         for (let i = 0; i < 25; i++) {
@@ -80,7 +80,7 @@ module.exports.register=async (req,res)=>{
                 <a href=http://localhost:8080/verify/${code}> Click here</a>
                 </div>`,
           }).catch(err => console.log(err));
-          res.json({status:201,message:"verify your account"})
+          res.json({status:201,message:"We've just sent an email... verify your account"})
         /* const token=createToken(user._id)
         res.cookie('jwtCookie',token,{httpOnly:false, maxAge:maxAge*1000})
         res.json({status:201,user:user._id}).end() */
