@@ -5,7 +5,7 @@ import {handleSubmit,getCity, getState,getVillages} from './registerLogic'
 export default function Registration({person,setPerson}) {
   const [villages,setVillages]=useState([])
   const [formdata,setFormdata]=useState({userType:"patient", name:"", email:"", password:"", confirmPassword:"", height:"", weight:"", bloodGroup:"O+", age:0, gender:"male", licence:"", street:"", city:"", state:"", zip:"", photo:""})
-  const [user,setUser]=useState("patient")
+  // const [user,setUser]=useState("patient")
   const navigate=useNavigate()
   // const [logged,setLogged]=useState("")
   const imageRef=useRef();
@@ -77,7 +77,7 @@ export default function Registration({person,setPerson}) {
 
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="userType" className="block mb-2 text-sm font-bold text-gray-700">You are: </label>
-                <select id="userType" onChange={(e)=>handleChange(e,"userType")} name="userType" value={user} onChange={(e)=>setUser(e.target.value)} className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline">
+                <select id="userType" onChange={(e)=>handleChange(e,"userType")} name="userType" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline">
                   <option value="patient" defaultChecked>Patient</option>
                   <option value="doctor">Doctor</option>
                   <option value="hospital">Hospital</option>
@@ -85,7 +85,7 @@ export default function Registration({person,setPerson}) {
                 </select>
               </div>
 
-            {user==="patient" && <div>
+            {formdata.userType==="patient" && <div>
                 <div className="col-span-6 sm:col-span-3">
                     <label htmlFor="height" className="block mb-2 text-sm font-bold text-gray-700">Height</label>
                     <input type="text" onChange={(e)=>handleChange(e,"height")} name="height" id="height" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
@@ -108,7 +108,7 @@ export default function Registration({person,setPerson}) {
                 </select>
               </div>
                 </div>}
-                {(user==="patient" || user==="doctor") && 
+                {(formdata.userType==="patient" || formdata.userType==="doctor") && 
                 <>
                 <div className="col-span-6 sm:col-span-3">
                   <label htmlFor="gender" className="block mb-2 text-sm font-bold text-gray-700">Gender</label>
@@ -122,7 +122,7 @@ export default function Registration({person,setPerson}) {
                 <label htmlFor="age" className="block mb-2 text-sm font-bold text-gray-700">Age</label>
                 <input type="number" onChange={(e)=>handleChange(e,"age")} name="age" id="age" autoComplete="age" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
               </div></>}
-                {user!=="patient" &&
+                {formdata.userType!=="patient" &&
                     <div className="col-span-6 sm:col-span-3">
                         <label htmlFor="licence" className="block mb-2 text-sm font-bold text-gray-700">Licence</label>
                         <input type="text" onChange={(e)=>handleChange(e,"licence")} name="licence" id="licence" className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:border-indigo-500 focus:outline-none focus:shadow-outline"/>
