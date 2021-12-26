@@ -10,8 +10,11 @@ export function handleSubmit(e,email,password,person,setPerson) {
     body:JSON.stringify({email,password}),
   }).then(res=>res.json())
     .then(res=>{
-      if(res.status===404){
-        window.alert(res.message)
+      if(res.status===400){
+        return window.alert("Error: "+res.errors.email,res.errors.password)
+      }
+      else if(res.status===404){
+        return window.alert(res.message)
       }
       else if(res.status===200)
           {sessionStorage.setItem("user",res.user)

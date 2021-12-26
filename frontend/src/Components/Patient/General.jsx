@@ -39,7 +39,7 @@ export default function General() {
                     }
                     <span className='py-1 md:py-2'>from {user.city}</span>
                     <span className='py-1 md:py-2'>Contact: {user.phone}</span>
-                    <span className='py-1 md:py-2'>Mail to: {user.email}</span>
+                    <span className='py-1 md:py-2'>Email: {user.email}</span>
             </div>}
         </div>
     )
