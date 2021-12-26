@@ -4,7 +4,7 @@ require('dotenv').config()
 JWT_SECRET=process.env.JWT_SECRET
 
 
-const requireAuth=(req,res,next)=>{
+/* const requireAuth=(req,res,next)=>{
     const token=req.cookies.jwtCookie
     console.log(token)
     if(token){
@@ -20,7 +20,7 @@ const requireAuth=(req,res,next)=>{
     }else{
         res.redirect('/login')
     }
-}
+} */
 
 const checkUser=async(req,res)=>{
    // console.log(req.cookies)
@@ -43,4 +43,4 @@ const checkUser=async(req,res)=>{
 }
 
 
-module.exports={requireAuth,checkUser}
+module.exports={checkUser}

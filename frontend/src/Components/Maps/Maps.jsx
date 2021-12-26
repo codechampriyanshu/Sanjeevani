@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import {MdMedicalServices } from 'react-icons/md'
 import {FaClinicMedical,FaMicroscope} from 'react-icons/fa'
 import {getClinics, getHospitals,getPathology} from './data'
-import { useParams } from 'react-router-dom'
+import { useParams,Link } from 'react-router-dom'
 export default function Test() {
     const params=useParams()
     const [viewport, setViewport] = useState({
@@ -79,6 +79,7 @@ export default function Test() {
                     <div className='text-red-400'>{selectedMarker.name}</div>
                     <div className='text-green-500'>{selectedMarker.desc}</div>
                     <div className='text-blue-500'>Phone:{selectedMarker.phone}</div>
+                    <Link className='block p-2 m-2 font-semibold text-white bg-green-400 rounded-lg' to={`/patient/appointment/new/${selectedMarker.id}`}>Take appointment..</Link>
                 </Popup>}
                 <FullscreenControl className='top-32 left-4'></FullscreenControl>
                 <ScaleControl className='bottom-4 right-4'></ScaleControl>

@@ -1,26 +1,34 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom'
 import {MdOutlinePeopleAlt } from "react-icons/md";
 import {FaUserPlus} from "react-icons/fa";
-import {FaUserMinus} from "react-icons/fa";
 import Scheduled  from './Scheduled';
-import NewAppointment from './NewAppointment';
 export default function Appointments() {
     const [show,setShow]=useState("Scheduled Appointments")
     return (
         <div className="">
-            <div className="flex flex-row items-center justify-between">
-            <div className="flex flex-col items-center justify-center ml-3">
-                <MdOutlinePeopleAlt className="w-8 h-8 mx-auto mt-2 md:mb-2 lg:mb-3" onClick={()=>setShow("Scheduled Appointments")}/>
-                    <span className="w-8 h-8 mr-12 text-sm font-semibold text- md:text-base lg:text-lg">Scheduled Appointments</span>
-            </div>
-             <div className="flex flex-col items-center justify-center p-3 pt-5 mr-8">
-                <FaUserPlus className="w-8 h-8 mx-auto mt-2 md:mb-2 lg:mb-3" onClick={()=>setShow("New Appointments")}/>
-                    <span className="w-8 h-8 mr-12 text-sm font-semibold md:text-base lg:text-lg">New Appointments</span>
-            </div>
+            <div className="flex flex-row items-center justify-around my-2 md:my-4">
+            <button onClick={()=>setShow("Scheduled Appointments")} className="flex flex-col items-center justify-center">
+                <MdOutlinePeopleAlt className="w-8 h-8 text-blue-600 md:w-12 md:h-12"/>
+                    <span className="text-sm font-hairline md:text-base">Scheduled</span>
+            </button>
+             <button onClick={()=>setShow("New Appointments")} className="flex flex-col items-center justify-center">
+                <FaUserPlus className="w-8 h-8 text-blue-600 md:w-12 md:h-12" />
+                    <span className="text-sm font-hairline md:text-base">New</span>
+            </button>
             </div>
             <div>
                 {show==="Scheduled Appointments" && <Scheduled/>}
-                {show==="New Appointments" && <NewAppointment/>}
+                {show==="New Appointments" && 
+                <div className='m-2'>
+                    <div className='my-2 text-blue-500'>Which appointment would you like to take?</div>
+                    <div className='flex flex-col'>
+                        <Link className='p-2 my-1 text-white bg-gray-600 border border-gray-50' to="/nearby/clinics">Clinics</Link>
+                        <Link className='p-2 my-1 text-white bg-gray-600 border border-gray-50' to="/nearby/labs">Pathology</Link>
+                        <Link className='p-2 my-1 text-white bg-gray-600 border border-gray-50' to="/nearby/hospitals">Hospitals</Link>
+                    </div>
+                    <div className=''>TIPS: prefer to choose clinics in the nights instead of hospitals</div>
+                </div>}
 
             </div>
         </div>

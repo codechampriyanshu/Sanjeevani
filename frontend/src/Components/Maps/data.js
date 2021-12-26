@@ -7,7 +7,7 @@ export function getHospitals(latitude,longitude){
         const mul=(i%2==0?-1:1)
         let x= (Math.random()-0.5)*mul;
         let y=(Math.random()-0.5)*mul;
-        hospitals.push({name:names[i],desc:desc[0],phone:phones[0], position:{latitude:latitude+x,longitude:longitude+y}})
+        hospitals.push({id:`h${i}`,name:names[i],desc:desc[0],phone:phones[0], position:{latitude:latitude+x,longitude:longitude+y}})
     }
     return hospitals
 } 
@@ -21,7 +21,7 @@ export function getClinics(latitude,longitude){
         const mul=(i%2==0?-1:1)
         let x= (Math.random()-0.5)*mul;
         let y=(Math.random()-0.5)*mul;
-        clinics.push({name:names[i],desc:desc[0],phone:phones[0], position:{latitude:latitude+x,longitude:longitude+y}})
+        clinics.push({id:`c${i}`,name:names[i],desc:desc[0],phone:phones[0], position:{latitude:latitude+x,longitude:longitude+y}})
     }
     return clinics
 } 
@@ -35,7 +35,7 @@ export function getPathology(latitude,longitude){
         const mul=(i%2==0?-1:1)
         let x= (Math.random()-0.5)*mul;
         let y=(Math.random()-0.5)*mul;
-        pathLabs.push({name:names[i],desc:desc[0],phone:phones[0], position:{latitude:latitude+x,longitude:longitude+y}})
+        pathLabs.push({id:`p${i}`,name:names[i],desc:desc[0],phone:phones[0], position:{latitude:latitude+x,longitude:longitude+y}})
     }
     return pathLabs
 } 

@@ -1,23 +1,69 @@
 import React, { useState } from 'react'
 import {MdDelete} from "react-icons/md"
 import {AiFillCaretRight,AiFillCaretDown} from 'react-icons/ai'
+import { useEffect } from 'react'
 export default function Scheduled() {
-    const [toggle,setToggle]=useState(false)
-    const handleClick=(e)=>{
-        setToggle(!toggle)
-        console.log(e.target.parentNode.childNodes[0].nextElementSibling)
+    const user=sessionStorage.getItem("user")
+    // const [toggle,setToggle]=useState(false)
+    const [loading,setLoading]=useState(true)
+    // const [selectedItem,setSelectedItem]=useState(null)
+    const [appointments,setAppointments]=useState([])
+    const [buttonClick,setButtonClick]=useState(true)       //just to run useEffect when item is deleted..
+
+    function deleteAppointment(id){
+        fetch(`http://localhost:8080/patient/appointment/delete/${id}`,{
+            method:'GET',           //CORS was disturbing while doing delete...
+            credentials:'include',
+        }).then(res=>res.json())
+        .then(res=>{
+            if(res.status===204){
+                window.alert(res.message)
+                setLoading(true)
+                setButtonClick(!buttonClick)
+            }
+            else if(res.status===404)
+                return window.alert("try again later")
+        })
+        .catch(e=>window.alert("some error occured: ",e))
     }
+    
+    useEffect(()=>{
+        fetch(`http://localhost:8080/patient/appointments/get/${user}`)
+        .then(res=>res.json())
+        .then(res=>{
+            if(res.status===404){
+                window.alert("no appointments scheduled")
+                setLoading(false)
+            }
+            setAppointments(res.appointments)
+            setLoading(false)
+        })
+        .catch((e)=>window.alert("some error occured: ",e))
+    },[buttonClick])
+    /* const handleClick=(item,e)=>{
+        setSelectedItem(item)
+    } */
     return (
-        <div className="mx-1 my-5 border border-gray-500" onClick={(e)=>handleClick(e)}>
-            <div className='absolute z-10 h-full'></div>
-            <div className='flex flex-row items-center justify-between'>
-                {!toggle && <AiFillCaretRight className='p-0 m-0'/>}
-                {toggle && <AiFillCaretDown className='p-0 m-0'/>}
-                <span className="">12/12/2021 2:00 pm</span>
-                <span className="">{ }</span>
-                <MdDelete className="w-6 h-6 text-red-600"/>
-            </div>
-            <div className='hidden' id="x">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium animi dolorum, eos veniam quidem officia molestiae facilis autem similique dolore incidunt magni ullam, facere iusto rem recusandae, ipsa ut aperiam.</div>
+        <div>
+            {loading && <div className='text-xl text-center text-green-500'>Loading...</div>}
+            {!loading &&(appointments.length ? 
+            appointments.map((item)=>(
+                <div className="mx-1 my-5 border border-gray-500" >    {/* onClick={(e)=>handleClick(item,e)} */}
+                    <div className='absolute z-10 h-full'></div>
+                    <div className='flex flex-row items-center justify-between'>
+                        {/* !toggle &&  */<AiFillCaretRight className='p-0 m-0'/>}
+                        {/* toggle && <AiFillCaretDown className='p-0 m-0'/> */}
+                        <span className="">{item.applied.substring(0,25)}  {item.disease}</span>
+                        <button onClick={()=>deleteAppointment(item._id)}><MdDelete className="w-6 h-6 text-red-600"/></button>
+                    </div>
+                    <div className='ml-2'>
+                        <div className="">Preferred time: {item.preferredTime}</div>
+                        <div>Notes: {item.comments}</div>
+                        <div>appointed: {item.appointedDate===""?"Not yet":item.appointedDate}</div>
+                    </div>
+                </div>
+            ))
+            :<div className='mx-1 my-5 text-red-500 border border-gray-500'>No records found..</div>)}
         </div>
     )
 }
