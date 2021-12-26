@@ -33,6 +33,9 @@ export function handleSubmit(e,formdata,person,setPerson){
     body:text,
   }).then(res=>res.json())
   .then((res)=>{
+    if(res.status==201){
+      return window.alert(res.message)
+    }
     if(res && res.user){
       setPerson(res.user)
       sessionStorage.setItem("user",res.user)

@@ -1,6 +1,6 @@
 export function handleSubmit(e,email,password,person,setPerson) {
   e.preventDefault()
-  console.log(email,password)
+  // console.log(email,password)
   fetch("http://localhost:8080/login",{
     method:'POST',
     credentials: 'include',
@@ -10,7 +10,10 @@ export function handleSubmit(e,email,password,person,setPerson) {
     body:JSON.stringify({email,password}),
   }).then(res=>res.json())
     .then(res=>{
-        if(res.status===200)
+      if(res.status===404){
+        window.alert(res.message)
+      }
+      else if(res.status===200)
           {sessionStorage.setItem("user",res.user)
           setPerson(res.user)}
           else{

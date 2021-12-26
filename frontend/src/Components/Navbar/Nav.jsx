@@ -7,7 +7,6 @@ export default function Nav({toggle,setToggle,person,setPerson}) {
     fetch("http://localhost:8080/logout")
     .then(res=>res.json())
     .then(res=>{
-      console.log(res.status)
       if(res.status===200)
         {setPerson("")
         sessionStorage.removeItem("user")

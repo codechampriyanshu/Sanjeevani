@@ -1,7 +1,8 @@
 const User=require('../models/user')
 const jwt=require('jsonwebtoken')
 require("dotenv").config()
-const JWT_SECRET=process.env.JWT_SECRET
+const nodemailer=require('nodemailer')
+const {JWT_SECRET,ADMIN_MAIL,ADMIN_MAIL_PASSWORD}=process.env
 
 //creating errors
 const handleErrors=(err)=>{
@@ -40,6 +41,8 @@ module.exports.login=async (req,res)=>{
     const {email, password}=req.body
     try{
         const user=await User.login(email,password)
+        if(!user.verified)
+            return res.json({status:404,message:"account not verified"})
         const token=createToken(user._id)
         res.cookie('jwtCookie',token,{httpOnly:true, maxAge:maxAge*1000})
         res.json({status:200,user:user._id}).end()
@@ -54,10 +57,33 @@ module.exports.login=async (req,res)=>{
 module.exports.register=async (req,res)=>{
     try{
         console.log(req.body)
-        const user= await User.create({...req.body})
-        const token=createToken(user._id)
+        const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let code = '';
+        for (let i = 0; i < 25; i++) {
+            code += characters[Math.floor(Math.random() * characters.length )];
+        }
+        const user= await User.create({...req.body,confirmationCode:code})
+        const transport = nodemailer.createTransport({
+            service: "Gmail",
+            auth: {
+              user: ADMIN_MAIL,
+              pass: ADMIN_MAIL_PASSWORD,
+            },
+          })
+          transport.sendMail({
+            from: ADMIN_MAIL,
+            to: req.body.email,
+            subject: "Please confirm your account",
+            html: `<h1>Email Confirmation</h1>
+                <h2>Hello ${req.body.name}</h2>
+                <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
+                <a href=http://localhost:8080/verify/${code}> Click here</a>
+                </div>`,
+          }).catch(err => console.log(err));
+          res.json({status:201,message:"verify your account"})
+        /* const token=createToken(user._id)
         res.cookie('jwtCookie',token,{httpOnly:false, maxAge:maxAge*1000})
-        res.json({status:201,user:user._id}).end()
+        res.json({status:201,user:user._id}).end() */
     }
     catch(err){
         const errors=handleErrors(err)

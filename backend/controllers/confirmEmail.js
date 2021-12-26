@@ -2,7 +2,7 @@ const User=require('../models/user')
 const jwt=require('jsonwebtoken')
 module.exports.confirmEmail = (req, res) => {
     User.findOne({
-      confirmationCode: req.params.confirmationCode,
+      confirmationCode: req.params.code,
     })
       .then((user) => {
         if (!user) {
