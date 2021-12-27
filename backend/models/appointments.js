@@ -1,6 +1,5 @@
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
-const bcrypt=require('bcrypt')
 
 const appointSchema= new Schema({
     applied:{type:String,default: new Date()},

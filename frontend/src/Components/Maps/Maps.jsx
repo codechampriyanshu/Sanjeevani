@@ -1,8 +1,8 @@
 import ReactMapGl, { Marker, Popup, GeolocateControl, NavigationControl, FullscreenControl, ScaleControl } from 'react-map-gl'
 import React, { useEffect, useState } from 'react'
 import {MdMedicalServices } from 'react-icons/md'
-import {FaClinicMedical,FaMicroscope} from 'react-icons/fa'
-import {getClinics, getHospitals,getPathology} from './data'
+import {FaClinicMedical,FaMicroscope,FaAmbulance} from 'react-icons/fa'
+import {getAmbulance, getClinics, getHospitals,getPathology} from './data'
 import { useParams,Link } from 'react-router-dom'
 export default function Test() {
     const params=useParams()
@@ -18,14 +18,14 @@ export default function Test() {
     const [hospitals,setHospitals]=useState(null)
     const [clinics,setClinics]=useState(null)
     const [pathology,setPathology]=useState(null)
+    const [ambulance,setAmbulance]=useState(null)
     const [selectedMarker, setSelectedMarker] = useState(null)
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position)=>{
-            setHospitals([
-                ...getHospitals(position.coords.latitude,position.coords.longitude)
-            ])
+            setHospitals([...getHospitals(position.coords.latitude,position.coords.longitude)])
             setClinics([...getClinics(position.coords.latitude,position.coords.longitude)])
             setPathology([...getPathology(position.coords.latitude,position.coords.longitude)])
+            setAmbulance([...getAmbulance(position.coords.latitude,position.coords.longitude)])
         })
         const popupCloser = (e) => {
             if (e.key === "Escape")
@@ -72,6 +72,12 @@ export default function Test() {
                 {show==="labs" && pathology && pathology.map((item) => (
                     <Marker latitude={item.position.latitude} longitude={item.position.longitude} >            {/* get data dynamically here and then render the markers */}
                         <FaMicroscope className='text-xl text-red-400 md:text-2xl' onClick={() => setSelectedMarker(item)} />
+                    </Marker>
+                ))}
+
+                {show==="ambulances" && ambulance && ambulance.map((item) => (
+                    <Marker latitude={item.position.latitude} longitude={item.position.longitude} >            {/* get data dynamically here and then render the markers */}
+                        <FaAmbulance className='text-xl text-red-400 md:text-2xl' onClick={() => setSelectedMarker(item)} />
                     </Marker>
                 ))}
 

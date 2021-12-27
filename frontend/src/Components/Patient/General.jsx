@@ -3,7 +3,6 @@ import React,{useEffect, useState} from 'react'
 export default function General() {
     const [loading,setLoading]=useState(true)
     const person=sessionStorage.getItem("user")
-    const text=JSON.stringify({id:person})
     useEffect(()=>{
         fetch(`http://localhost:8080/user/${person}`,{
             method:'GET',
@@ -11,8 +10,9 @@ export default function General() {
         }).then(res=>res.json())
             .then(res=>{
                 setUser({...res})
-                setLoading(false)
             })
+            .catch(e=>window.alert("error occured: ",e))
+            setLoading(false)
     },[])
     const [user,setUser]=useState({})
    

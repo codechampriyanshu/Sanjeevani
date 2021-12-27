@@ -1,23 +1,17 @@
 
 import React, {useEffect ,useRef, useState } from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 import {handleSubmit,getCity, getState,getVillages} from './registerLogic'
 export default function Registration({person,setPerson}) {
   const [villages,setVillages]=useState([])
-  const [formdata,setFormdata]=useState({userType:"patient", name:"", email:"", password:"", confirmPassword:"", height:"", weight:"", bloodGroup:"O+", age:0, gender:"male", licence:"", street:"", city:"", state:"", zip:"", photo:""})
-  // const [user,setUser]=useState("patient")
+  const [formdata,setFormdata]=useState({userType:"patient", name:"", email:"",licence:"", password:"", confirmPassword:"", height:"", weight:"", bloodGroup:"O+", age:0, gender:"male", licence:"", street:"", city:"", state:"", zip:"", photo:""})
   const navigate=useNavigate()
-  // const [logged,setLogged]=useState("")
   const imageRef=useRef();
   useEffect(()=>{
     if(person!=="")
     navigate(`/profile`)
   },[person])
   
- /*  useEffect(()=>{
-    if(logged!=="")
-      navigate(-1)
-  },[logged]) */
 
   function handleChange(e,field){     //function to handle all the inputs, except image
       setFormdata({...formdata,[field]:e.target.value})
@@ -164,6 +158,11 @@ export default function Registration({person,setPerson}) {
                 
             </div>
           </div>
+          <Link
+                className="inline-block text-sm font-normal text-blue-500 align-baseline hover:text-blue-800"
+                to="/login">
+                Already registered? Log in
+              </Link>
           <div className="flex items-center justify-between px-4 py-3 bg-gray-50 sm:px-6">
                 {   //for rendering image-->
                   formdata.photo!=="" &&

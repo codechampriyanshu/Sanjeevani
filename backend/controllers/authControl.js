@@ -76,7 +76,7 @@ module.exports.register=async (req,res)=>{
             subject: "Please confirm your account",
             html: `<h1>Email Confirmation</h1>
                 <h2>Hello ${req.body.name}</h2>
-                <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
+                <p>Thank you for considering us. Please confirm your email by clicking on the following link</p>
                 <a href=http://localhost:8080/verify/${code}> Click here</a>
                 </div>`,
           }).catch(err => console.log(err));

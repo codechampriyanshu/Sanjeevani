@@ -18,7 +18,7 @@ export default function Appointments() {
             </button>
             </div>
             <div>
-                {show==="Scheduled Appointments" && <Scheduled/>}
+                {show==="Scheduled Appointments" && <Scheduled setShow={setShow}/>}
                 {show==="New Appointments" && 
                 <div className='m-2'>
                     <div className='my-2 text-blue-500'>Which appointment would you like to take?</div>

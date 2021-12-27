@@ -21,7 +21,7 @@ const userSchema= new Schema({
     bloodGroup:String,
     height:String,
     weight:String,
-    license:String,
+    licence:String,
     gender:String,
     age:Number,
     zip:{type:Number,required:[true,'enter your zip number']},

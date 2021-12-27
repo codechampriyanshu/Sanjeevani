@@ -2,7 +2,6 @@ import React from 'react'
 import {  FaBookMedical,FaSyringe ,FaUserPlus,FaAmbulance} from "react-icons/fa";
 import {BsBoxArrowRight } from "react-icons/bs";
 import { BiLocationPlus } from "react-icons/bi";
-import {FiUsers} from "react-icons/fi";
 import {SiGooglemaps} from "react-icons/si";
 import {MdContacts} from "react-icons/md";
 import { useState } from 'react';
@@ -27,7 +26,7 @@ export default function Services() {
             <div className='ml-4 md:hidden'>
                 <BsBoxArrowRight onClick={handClick} className="w-8 h-8 text-black-800" />
             </div>
-            <div className='grid grid-cols-10'>
+            <div className='grid grid-cols-10'>         {/* FIXME: UI in mobile is not so good. Make it cover full width when sidebar is not toggled */}
                 <div className={(click?"translate-x-1 ":"-translate-x-72 ")+`duration-500 mt-2 col-span-2 md:translate-x-0 transform p-3 m-3 font-semibold `}>
                     <Link to="" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md" onClick={()=>setActive("General")}>
                         <MdContacts className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3" />
@@ -57,7 +56,7 @@ export default function Services() {
                         <SiGooglemaps className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
                         <span className="text-sm md:text-base lg:text-lg">Hospitals</span>
                     </Link>
-                    <Link to="" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md">
+                    <Link to="/nearby/ambulances" className="flex flex-col items-center justify-center mb-2 rounded-lg shadow-md">
                         <FaAmbulance className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
                         <span className='text-sm md:text-base lg:text-lg '>Ambulance</span>
                     </Link>

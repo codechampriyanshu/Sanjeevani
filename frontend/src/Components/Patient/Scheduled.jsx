@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {MdDelete} from "react-icons/md"
 import {AiFillCaretRight,AiFillCaretDown} from 'react-icons/ai'
 import { useEffect } from 'react'
-export default function Scheduled() {
+export default function Scheduled({setShow}) {
     const user=sessionStorage.getItem("user")
     // const [toggle,setToggle]=useState(false)
     const [loading,setLoading]=useState(true)
@@ -11,6 +11,8 @@ export default function Scheduled() {
     const [buttonClick,setButtonClick]=useState(true)       //just to run useEffect when item is deleted..
 
     function deleteAppointment(id){
+        const check=window.confirm("Are you sure you want to delete this appointment..\nThis is irreversible!")
+        if(!check)  return
         fetch(`http://localhost:8080/patient/appointment/delete/${id}`,{
             method:'GET',           //CORS was disturbing while doing delete...
             credentials:'include',
@@ -33,12 +35,11 @@ export default function Scheduled() {
         .then(res=>{
             if(res.status===404){
                 window.alert("no appointments scheduled")
-                setLoading(false)
             }
             setAppointments(res.appointments)
-            setLoading(false)
         })
         .catch((e)=>window.alert("some error occured: ",e))
+        setLoading(false)
     },[buttonClick])
     /* const handleClick=(item,e)=>{
         setSelectedItem(item)

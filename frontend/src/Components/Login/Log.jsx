@@ -55,6 +55,11 @@ export default function Log({person,setPerson}) {
               <button className="inline-block px-4 py-2 text-white bg-blue-500 rounded shadow-lg hover:bg-blue-600 focus:bg-blue-700" onClick={(e)=>handleSubmit(e,emailRef.current.value,passwordRef.current.value,person,setPerson)} type="submit">Sign In</button>
               <Link
                 className="inline-block text-sm font-normal text-blue-500 align-baseline hover:text-blue-800"
+                to="/register">
+                New user? sign up
+              </Link>
+              <Link
+                className="inline-block text-sm font-normal text-blue-500 align-baseline hover:text-blue-800"
                 to="#">
                 Forgot Password?
               </Link>
