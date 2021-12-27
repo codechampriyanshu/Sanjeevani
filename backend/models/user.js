@@ -1,12 +1,12 @@
 const mongoose=require('mongoose')
 const {isEmail}=require('validator')
 const Schema=mongoose.Schema
-const bcrypt=require('bcrypt')
+const bcrypt=require('bcrypt')      //to hash the password
 
-const userSchema= new Schema({
-    verified:{type:Boolean,default:false},
-    confirmationCode:{type:String},
-    name:{type:String, required:[true,'please enter your name']},
+const userSchema= new Schema({  
+    verified:{type:Boolean,default:false},          //if email is verified or not
+    confirmationCode:{type:String},                 //used to verify the email
+    name:{type:String, required:[true,'please enter your name']},   
     email:{type:String,
         required:[true, 'please enter email'],
         unique:true,
@@ -17,7 +17,7 @@ const userSchema= new Schema({
         required: [true, 'please enter password'], 
         minlength: [6, 'password should be atleast 6 characters long'] 
     },
-    userType:{type:String, required:[true,'please choose who you are..']},
+    userType:{type:String, required:[true,'please choose who you are..']},    //user is patient, hospital, doctor, or pathology
     bloodGroup:String,
     height:String,
     weight:String,
@@ -26,15 +26,15 @@ const userSchema= new Schema({
     age:Number,
     zip:{type:Number,required:[true,'enter your zip number']},
     city:String,
-    photo:{type:String,required:[true,'upload your photo']}
+    photo:{type:String,required:[true,'upload your photo']}     //TODO: use GridFS for files
 })
 
-userSchema.pre('save',async function (next){
+userSchema.pre('save',async function (next){        //before saving hashing the password
     this.password= await bcrypt.hash(this.password,10)
     next();
 })
 
-userSchema.statics.login=async function(email,password){
+userSchema.statics.login=async function(email,password){        
     const user=await this.findOne({email})
     if(user){
         const auth=await bcrypt.compare(password,user.password)
