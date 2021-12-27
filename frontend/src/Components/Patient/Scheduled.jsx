@@ -4,9 +4,7 @@ import {AiFillCaretRight,AiFillCaretDown} from 'react-icons/ai'
 import { useEffect } from 'react'
 export default function Scheduled({setShow}) {
     const user=sessionStorage.getItem("user")
-    // const [toggle,setToggle]=useState(false)
     const [loading,setLoading]=useState(true)
-    // const [selectedItem,setSelectedItem]=useState(null)
     const [appointments,setAppointments]=useState([])
     const [buttonClick,setButtonClick]=useState(true)       //just to run useEffect when item is deleted..
 
@@ -41,19 +39,16 @@ export default function Scheduled({setShow}) {
         .catch((e)=>window.alert("some error occured: ",e))
         setLoading(false)
     },[buttonClick])
-    /* const handleClick=(item,e)=>{
-        setSelectedItem(item)
-    } */
+    
     return (
         <div>
             {loading && <div className='text-xl text-center text-green-500'>Loading...</div>}
             {!loading &&(appointments.length ? 
             appointments.map((item)=>(
-                <div className="mx-1 my-5 border border-gray-500" >    {/* onClick={(e)=>handleClick(item,e)} */}
+                <div className="mx-1 my-5 border border-gray-500" >   
                     <div className='absolute z-10 h-full'></div>
                     <div className='flex flex-row items-center justify-between'>
-                        {/* !toggle &&  */<AiFillCaretRight className='p-0 m-0'/>}
-                        {/* toggle && <AiFillCaretDown className='p-0 m-0'/> */}
+                        <AiFillCaretRight className='p-0 m-0'/>
                         <span className="">{item.applied.substring(0,25)}  {item.disease}</span>
                         <button onClick={()=>deleteAppointment(item._id)}><MdDelete className="w-6 h-6 text-red-600"/></button>
                     </div>

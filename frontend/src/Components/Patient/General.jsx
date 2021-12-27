@@ -10,9 +10,10 @@ export default function General() {
         }).then(res=>res.json())
             .then(res=>{
                 setUser({...res})
+                setLoading(false)
             })
-            .catch(e=>window.alert("error occured: ",e))
-            setLoading(false)
+            .catch(e=>{window.alert("error occured: ",e)
+            setLoading(false)})
     },[])
     const [user,setUser]=useState({})
    

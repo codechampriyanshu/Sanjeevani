@@ -1,28 +1,33 @@
-const Appointment=require('../models/appointments')
-module.exports.newAppointment=async function(req,res){
+const Appointment=require('../models/appointments')     //appointment model
+
+//function to add new appointment to appointments collection, having patient id same as the id of patient in users collection
+module.exports.newAppointment=function(req,res){
     const patient_id=req.params.id
     Appointment.create({...req.body,patient_id},(e,appointment)=>{
         if(e){
             res.json({status:404,message:"appointment not scheduled"})
         }
-        return res.json({status:200,appointment})
+        else res.json({status:200,appointment})
     })
 }
 
-module.exports.getAppointments=async function(req,res){
+//each appointment has patient id same as user id of patient so we can query and sort and then display..
+module.exports.getAppointments=function(req,res){
     const id=req.params.id
-    Appointment.find({patient_id:id}).sort({applied:"desc"}),(e,appointments)=>{
+    Appointment.find({patient_id:id}).sort({applied:"desc"}).exec(function(e,appointments){
         if(e){
-            return res.json({status:404,message:"not found"})
+            res.json({status:404,message:"not found"})
         }
-        return res.json({status:200,appointments})
-    }
+        else res.json({status:200,appointments})
+    })
 }
 
-module.exports.deleteAppointment=async function (req,res){
+
+//since we have sent the whole appointment document (including id) to the frontend, so we can get the id back in the url and then delete corresponding appointment
+module.exports.deleteAppointment=function (req,res){
     const id=req.params.id
-    const delApp = await Appointment.findByIdAndDelete(id)
-    if(!delApp)
-        return res.json({status:404,message:"can not delete"})
-    return res.json({status:204,message:"successfully deleted"})
+    Appointment.findByIdAndDelete(id).exec(function(e,delApp){
+        if(e)   res.json({status:404,message:"can not delete"})
+        else    res.json({status:204,message:"successfully deleted"})
+    })
 }

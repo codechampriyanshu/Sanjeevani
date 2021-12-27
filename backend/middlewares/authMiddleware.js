@@ -3,29 +3,10 @@ const User = require('../models/user')
 require('dotenv').config()
 JWT_SECRET=process.env.JWT_SECRET
 
-
-/* const requireAuth=(req,res,next)=>{
-    const token=req.cookies.jwtCookie
-    console.log(token)
-    if(token){
-        jwt.verify(token,JWT_SECRET,async(err,decodedToken)=>{
-            if(err){
-                console.log(err.message)
-                res.json({Error:"not logged in"})
-            }else{
-                let user=await User.findById(decodedToken.id)
-                next()
-            }
-        })
-    }else{
-        res.redirect('/login')
-    }
-} */
-
 const checkUser=async(req,res)=>{
-   // console.log(req.cookies)
+   // Getting cookie and verifying it to ensure user is logged in..
     const token=await req.cookies.jwtCookie
-    if(token){
+    if(token){          
         jwt.verify(token,JWT_SECRET,async(err,decodedToken)=>{
             if(err){
                 console.log(err.message)

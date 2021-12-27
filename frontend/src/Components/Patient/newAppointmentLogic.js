@@ -1,14 +1,15 @@
 export function newAppoint(formdata,setFormdata){
+    let text
+    if(formdata.type==="pathology") text=JSON.stringify({...formdata,treated:true,disease:formdata.testName})
+    else    text=JSON.stringify({...formdata})
     const user=sessionStorage.getItem("user")
-    if(formdata.type==="clinic" || formdata.type==="hospital"){
-        // const {institute,preferredDate,preferredTime}=formdata
         fetch(`http://localhost:8080/patient/appointment/new/${user}`,{
             method:'POST',
             credentials:'include',
             headers:{
                 "Content-Type":"application/json"
             },
-            body:JSON.stringify({...formdata})
+            body:text
         })
         .then((res)=>res.json())
         .then((res)=>{
@@ -21,5 +22,4 @@ export function newAppoint(formdata,setFormdata){
         })
         .catch(err=>{console.log(err)
             window.alert("some error occured")})
-    }
 }

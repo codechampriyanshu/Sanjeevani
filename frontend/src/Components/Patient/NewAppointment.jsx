@@ -7,7 +7,7 @@ import { newAppoint } from './newAppointmentLogic'
 export default function NewAppointment() {
     const params=useParams()
     const id=params.id
-    const [appoint,setAppoint]=useState({type:"clinic",testName:"",institute:id,preferredDate:"",preferredTime:"10:10",disease:"",comments:""})
+    const [appoint,setAppoint]=useState({type:"hospital",testName:"",institute:id,preferredDate:"",preferredTime:"10:10",disease:"",comments:""})
     useEffect(()=>{
             switch(id[0]){
             case 'c':
