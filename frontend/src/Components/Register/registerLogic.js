@@ -33,7 +33,7 @@ export function handleSubmit(e,formdata,person,setPerson){
     body:text,
   }).then(res=>res.json())
   .then((res)=>{
-    if(res.status==201){
+    if(res.status===201){
       return window.alert(res.message)
     }
     if(res && res.user){

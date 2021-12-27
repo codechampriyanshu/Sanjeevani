@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{ useState} from 'react'
 import Landing from "../Components/Landing/Landing"
 import Navbar from "../Components/Navbar/Nav"
 import Footer from "../Components/Footer/Footer"

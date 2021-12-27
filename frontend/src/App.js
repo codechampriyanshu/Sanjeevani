@@ -23,7 +23,6 @@ function App() {
       .then((res)=>res.json())
       .then((res)=>{
           sessionStorage.setItem("user",res.user)
-          // localStorage.setItem("user",res.user)
           setPerson(res.user)
       })
       .catch((e)=>console.log(e))

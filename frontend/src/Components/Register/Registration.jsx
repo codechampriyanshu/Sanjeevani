@@ -4,7 +4,7 @@ import {useNavigate,Link} from 'react-router-dom'
 import {handleSubmit,getCity, getState,getVillages} from './registerLogic'
 export default function Registration({person,setPerson}) {
   const [villages,setVillages]=useState([])
-  const [formdata,setFormdata]=useState({userType:"patient", name:"", email:"",licence:"", password:"", confirmPassword:"", height:"", weight:"", bloodGroup:"O+", age:0, gender:"male", licence:"", street:"", city:"", state:"", zip:"", photo:""})
+  const [formdata,setFormdata]=useState({userType:"patient", name:"", email:"",licence:"", password:"", confirmPassword:"", height:"", weight:"", bloodGroup:"O+", age:0, gender:"male", street:"", city:"", state:"", zip:"", photo:""})
   const navigate=useNavigate()
   const imageRef=useRef();
   useEffect(()=>{
@@ -166,7 +166,7 @@ export default function Registration({person,setPerson}) {
           <div className="flex items-center justify-between px-4 py-3 bg-gray-50 sm:px-6">
                 {   //for rendering image-->
                   formdata.photo!=="" &&
-                  <img src={formdata.photo} className='w-20 h-20'/>
+                  <img src={formdata.photo} alt='' className='w-20 h-20'/>
                 }
             <button type="submit" onClick={(e)=>handleSubmit(e,formdata,person,setPerson)} className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
               Register

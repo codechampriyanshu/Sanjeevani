@@ -1,4 +1,4 @@
-import {FaUserPlus,FaFileMedical,FaAmbulance,FaLaptopMedical,FaSyringe} from 'react-icons/fa'
+import {FaUserPlus,FaFileMedical,FaAmbulance,FaSyringe} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import { BiLocationPlus,BiVideoPlus} from 'react-icons/bi'
 import {GiMedicines} from 'react-icons/gi'
