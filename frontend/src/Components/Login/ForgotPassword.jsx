@@ -2,20 +2,20 @@ import { useRef,useState,useEffect } from "react"
 import {Link,useNavigate} from 'react-router-dom'
 export default function ForgotPassword(){
     const navigate=useNavigate()
-    const [show,setShow]=useState('email')
-    const [button,setButton]=useState(false)
+    const [show,setShow]=useState('email')          
+    const [button,setButton]=useState(false)        //for resend otp button
     const [id,setId]=useState(null)
-    const [updated,setUpdated]=useState(false)
-    const emailRef=useRef()
+    const [updated,setUpdated]=useState(false)      //password is updated successfully or not
+    const emailRef=useRef()     
     const passwordRef=useRef()
     const confirmPasswordRef=useRef()
     const otpRef=useRef()
-    useEffect(()=>{
+    useEffect(()=>{     //if password is updated, navigate to login page
         if(updated){
             navigate('/login')
         }
     },[updated])
-    const handleCheck=(e)=>{
+    const handleCheck=(e)=>{            //function to request to send otp
         e.preventDefault()
         const emailId=emailRef.current.value
         if(emailId==="" || !emailId){
@@ -35,7 +35,7 @@ export default function ForgotPassword(){
         }).catch(e=>window.alert("some error occured",e))
     }
 
-    const handleOTP=(e)=>{
+    const handleOTP=(e)=>{      //function to match OTP
         e.preventDefault()
         fetch(`http://localhost:8080/checkOTP/${emailRef.current.value}/${otpRef.current.value}`)
         .then(res=>res.json())
@@ -48,7 +48,8 @@ export default function ForgotPassword(){
         })
         .catch(e=>window.alert(e))
     }
-    const handleReset=(e)=>{
+
+    const handleReset=(e)=>{        //function to finally update the password
         e.preventDefault()
         const password=passwordRef.current.value
         const cPassword=confirmPasswordRef.current.value
@@ -61,6 +62,7 @@ export default function ForgotPassword(){
             return window.alert("Passwords do not match.\nTry again")
         }
         
+        //url is made like this, so that no one can type it and update the password illegally
         fetch(`http://localhost:8080/update/password/${id}/${otpRef.current.value}`,{
             method:'POST',
             credentials:'include',
@@ -89,7 +91,7 @@ export default function ForgotPassword(){
                     <label className="block mb-2 text-sm font-normal text-gray-700" htmlFor="email" >Email</label>
                     <input className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" name="email" type="email" ref={emailRef} required autoFocus placeholder="Email" />
                 </div>
-                <button className={(button?"cursor-not-allowed ":" ")+"inline-block px-4 py-2 text-white bg-blue-500 rounded shadow-lg hover:bg-blue-600 focus:bg-blue-700"} type='submit' onClick={(e)=>handleCheck(e)}>Send OTP</button></>}
+                <button className={(button?"hidden ":" ")+"inline-block px-4 py-2 text-white bg-blue-500 rounded shadow-lg hover:bg-blue-600 focus:bg-blue-700"} type='submit' onClick={(e)=>handleCheck(e)}>Send OTP</button></>}
                 <span className={(button?"":"hidden ")+"text-gray-500 text-sm"}>Resend will be enabled after sometime</span>
                 <div className={(show==="otp"?" ":"hidden ")}>
                     Enter the otp sent to your registered Email

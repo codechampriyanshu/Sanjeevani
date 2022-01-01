@@ -3,7 +3,7 @@ const nodemailer=require('nodemailer')
 require('dotenv').config()
 const {ADMIN_MAIL_PASSWORD,ADMIN_MAIL}=process.env
 
-module.exports.resetPassword=(req,res)=>{
+module.exports.resetPassword=(req,res)=>{       //request to send email to the user containing OTP
     const id=req.params.id
     User.findOne({email:id}).exec()
     .then((doc)=>{
@@ -35,7 +35,7 @@ module.exports.resetPassword=(req,res)=>{
     .catch((e)=>    res.json({status:404,message:"this email is not registered"}))
 }
 
-module.exports.checkingOTP=(req,res)=>{
+module.exports.checkingOTP=(req,res)=>{     //to match the OTP
     const {email,code}=req.params
     User.findOne({email}).exec()
     .then((doc)=>{
@@ -48,7 +48,7 @@ module.exports.checkingOTP=(req,res)=>{
     .catch((e)=>    res.json({status:404,message:"unauthorized access"}))
 }
 
-module.exports.updatePassword=(req,res)=>{
+module.exports.updatePassword=(req,res)=>{      //to finally update the password
     const {password}=req.body
     const {id,otp}=req.params
     User.findById(id,function(e,doc){
