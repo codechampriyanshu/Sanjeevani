@@ -1,4 +1,4 @@
-const express=require('express')
+const express=require('express') 
 const mongoose=require('mongoose')
 const cookieParser=require('cookie-parser')
 const app=express()
@@ -6,15 +6,16 @@ const {register,login, logout} = require('./controllers/authControl')
 const {getUser} = require('./controllers/userController')   //for getting the user details e.g. profile.
 const {checkUser} =require('./middlewares/authMiddleware')    //for checking if the user is logged in or not.
 const { confirmEmail } = require('./controllers/confirmEmail')    //for email verification
+const {resetPassword, checkingOTP, updatePassword} = require('./controllers/resetPassword')
 const { newAppointment, getAppointments,deleteAppointment } = require('./controllers/appointment')
 const {editHistory,getHistory} = require('./controllers/history')     //patient medical history
 
 require('dotenv').config()
 const MONGO_URI=process.env.MONGO_URI
 
-app.use(cookieParser())
-app.use(express.json())   
-app.use(function(req, res, next) {          //CORS             
+app.use(cookieParser())   //to handle cookies
+app.use(express.json())     //to convert json strings to javascript objects
+app.use(function(req, res, next) {         //CORS           
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
   res.setHeader('Access-Control-Allow-Methods', '*')
   res.setHeader("Access-Control-Allow-Headers", "Content-type")
@@ -38,5 +39,8 @@ app.get('/patient/appointments/get/:id',(req,res)=>getAppointments(req,res))
 app.get('/patient/appointment/delete/:id',(req,res)=>deleteAppointment(req,res))
 app.post('/patient/history/add/:id',(req,res)=>editHistory(req,res))
 app.get('/patient/history/get/:id',(req,res)=>getHistory(req,res))
+app.get('/resetPassword/:id',(req,res)=>resetPassword(req,res))
+app.get('/checkOTP/:email/:code',(req,res)=>checkingOTP(req,res))
+app.post('/update/password/:id/:otp',(req,res)=>updatePassword(req,res))
 
 app.listen(8080,()=>{console.log("server started")})

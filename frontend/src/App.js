@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import Maps from './Components/Maps/Maps';
 import Help from './pages/Help';
 import NewAppointment from './Components/Patient/NewAppointment';
+import ForgotPassword from './Components/Login/ForgotPassword'
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path="/nearby/:id" element={<Maps/>}></Route>
         <Route path="/help" element={<Help/>}></Route>
         <Route path="/patient/appointment/new/:id" element={<NewAppointment/>}></Route>
+        <Route path="/forgotPassword" element={<ForgotPassword/>}></Route>
       </Routes>
     </Router>
   );
