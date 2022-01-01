@@ -11,7 +11,7 @@ export function handleSubmit(e,email,password,person,setPerson) {
   }).then(res=>res.json())
     .then(res=>{
       if(res.status===400){
-        return window.alert("Error: "+res.errors.email,res.errors.password)
+        return window.alert("Error: "+res.error)
       }
       else if(res.status===404){
         return window.alert(res.message)

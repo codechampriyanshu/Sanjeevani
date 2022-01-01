@@ -5,33 +5,6 @@ require("dotenv").config()
 const nodemailer=require('nodemailer')          //used it to send mail to newly registered emails for verification purposes.
 const {JWT_SECRET,ADMIN_MAIL,ADMIN_MAIL_PASSWORD}=process.env       //jwt secret, email and password of the gmail account from which we will send mails
 
-//creating errors for better user experience
-const handleErrors=(err)=>{
-    console.log(err.message,err.code)
-    let errors={email:'',password: ''}
-    if(err.message==='incorrect email'){
-        errors.email='the email is not registered'
-    }
-    if(err.message=='incorrect password'){
-        errors.password='incorrect password'
-    }
-
-    if(err.code===11000){           //mongoose throws it in the console. got idea from there
-        errors.email='email is already registered'
-        return errors
-    }
-    if(err.message.includes('user validation failed')){
-        Object.values(err.errors).forEach(({properties})=>{
-            errors[properties.path]=properties.message
-        })
-    }
-    if(err.message.includes('PayloadTooLargeError')){
-        errors.image="image file too large"
-    }
-    return errors
-}
-const maxAge= 3*24*60*60        //variable for age of cookies
-
 const createToken=(id)=>{       //function to create jwt cookies
     return jwt.sign({id}, JWT_SECRET,{
         expiresIn:maxAge
@@ -46,12 +19,11 @@ module.exports.login=async (req,res)=>{
         if(!user.verified)          //verified is a field in the user document, we are setting it to true when their email is verified. Here we are allowing only verified people to login
             return res.json({status:404,message:"account not verified"})
         const token=createToken(user._id)
-        res.cookie('jwtCookie',token,{httpOnly:false, maxAge:maxAge*1000})      //age was in milliseconds..
+        res.cookie('jwtCookie',token,{httpOnly:false, maxAge:3*24*60*60*1000})      
         res.json({status:200,user:user._id}).end()
     }
     catch(err){
-        const errors=handleErrors(err)
-        res.json({status:400,errors}).end()
+        res.json({status:400,error:err.message}).end()
     }
 }
 
@@ -88,8 +60,10 @@ module.exports.register=async (req,res)=>{
           res.json({status:201,message:"We've just sent an email... verify your account"})
     }
     catch(err){
-        const errors=handleErrors(err)
-        res.json({status:400,errors}).end()
+        let error=err.message
+        if(err.code===11000)
+            error="Email is already registerd"
+        res.json({status:400,error:error}).end()
     }
 }
 

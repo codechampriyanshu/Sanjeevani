@@ -40,9 +40,8 @@ export function handleSubmit(e,formdata,person,setPerson){
       setPerson(res.user)
       sessionStorage.setItem("user",res.user)
     }
-    else if(res.errors){
-      console.log(res.errors.email, res.errors.password)
-      window.alert(`Error: ${res.errors.email}`,res.errors.password,res.errors.image)
+    else if(res.error){
+      window.alert(`Error: ${res.error}`)
     }
   })
   .catch((e)=>{
