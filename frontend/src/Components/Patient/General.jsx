@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from 'react'
+import { Link } from 'react-router-dom'
 
 export default function General() {
     const [loading,setLoading]=useState(true)
@@ -40,6 +41,7 @@ export default function General() {
                     }
                     <span className='py-1 md:py-2'>from {user.city}</span>
                     <span className='py-1 md:py-2'>Email: {user.email}</span>
+                    <Link className='px-2 py-1 text-white bg-green-500 rounded-lg' to={`/profile/update/${person}`}>Update profile</Link>
             </div>}
         </div>
     )
