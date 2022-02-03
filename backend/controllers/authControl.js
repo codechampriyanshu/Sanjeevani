@@ -7,7 +7,7 @@ const {JWT_SECRET,ADMIN_MAIL,ADMIN_MAIL_PASSWORD}=process.env       //jwt secret
 
 const createToken=(id)=>{       //function to create jwt cookies
     return jwt.sign({id}, JWT_SECRET,{
-        expiresIn:3*24*60*60*1000
+        expiresIn:maxAge
     })
 }
 
@@ -20,11 +20,10 @@ module.exports.login=async (req,res)=>{
             return res.json({status:404,message:"account not verified"})
         const token=createToken(user._id)
         res.cookie('jwtCookie',token,{httpOnly:false, maxAge:3*24*60*60*1000})      
-        res.json({status:200,user:user._id,userType:user.userType})
+        res.json({status:200,user:user._id}).end()
     }
     catch(err){
-        console.log(err)
-        res.json({status:400,error:err.message})
+        res.json({status:400,error:err.message}).end()
     }
 }
 
@@ -64,12 +63,12 @@ module.exports.register=async (req,res)=>{
         let error=err.message
         if(err.code===11000)
             error="Email is already registerd"
-        res.json({status:400,error:error})
+        res.json({status:400,error:error}).end()
     }
 }
 
 //logout ->
 module.exports.logout=(req,res)=>{
     res.cookie('jwtCookie','',{maxAge:1})       //set cookie age 1ms and already removed the data in sessionStorage from frontend  
-    res.json({status:200, message:"successfully logged out"})
+    res.json({status:200, message:"successfully logged out"}).end()
 }

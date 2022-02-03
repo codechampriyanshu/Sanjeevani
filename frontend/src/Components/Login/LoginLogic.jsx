@@ -18,7 +18,6 @@ export function handleSubmit(e,email,password,person,setPerson) {
       }
       else if(res.status===200)
           {sessionStorage.setItem("user",res.user)
-          sessionStorage.setItem("userType",res.userType)
           setPerson(res.user)}
           else{
             window.alert("Check your credentials again...")

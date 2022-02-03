@@ -13,15 +13,13 @@ const checkUser=async(req,res)=>{
                 res.status(404).json({user:""})
             }
             else{
-                User.findById(decodedToken.id).exec()
-                .then((user)=>
-                    res.json({status:200,user:user._id,userType:user.userType}))
-                .catch((e)=>res.json({status:404,user:""}))
+                let user=await User.findById(decodedToken.id)
+                res.status(200).json({user:user._id})
             }
         })
     }
     else{
-        res.json({status:404,user:""})
+        res.status(404).json({user:""})
     }
 }
 
