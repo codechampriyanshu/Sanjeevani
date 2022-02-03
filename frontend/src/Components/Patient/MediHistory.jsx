@@ -2,8 +2,8 @@ import React from 'react'
 import { useState,useEffect } from 'react'
 import {AiFillFileAdd} from 'react-icons/ai'
 
-export const MediHistory = () => {
-    const id=sessionStorage.getItem("user")
+export const MediHistory = ({person}) => {
+    const id=person || sessionStorage.getItem("user")
     const [loading,setLoading]=useState(true)
     const [show,setShow]=useState("view")
     const [addNew,setAddNew]=useState({})

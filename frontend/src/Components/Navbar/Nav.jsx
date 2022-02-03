@@ -34,7 +34,7 @@ export default function Nav({toggle,setToggle,person,setPerson}) {
       </div>
       <div className={(toggle?"-translate-x-0 ":"translate-x-72 ")+" transform duration-500 flex flex-col pt-12 fixed md:hidden top-0 right-0 h-full w-72 z-40 bg-black text-white opacity-90"}>
         <HashLink className="pl-4 mt-4 text-lg font-bold border border-collapse border-gray-600 select-none" to="/#Home">Home</HashLink>
-        {person!=="" && <Link className="pl-4 mt-4 text-lg font-bold border border-collapse border-gray-600 select-none" to="/profile">My Account</Link>}
+        {person!=="" && <Link className="pl-4 mt-4 text-lg font-bold border border-collapse border-gray-600 select-none" to="/dashboard">My Account</Link>}
         {person==="" ?(<>
           <Link className="pl-4 mt-4 text-lg font-bold border border-collapse border-gray-600 select-none" to="/login">Login</Link>
           <Link className="pl-4 mt-4 text-lg font-bold border border-collapse border-gray-600 select-none" to="/register">Sign up</Link>
@@ -51,7 +51,7 @@ export default function Nav({toggle,setToggle,person,setPerson}) {
         <HashLink className="px-3 py-1 mr-4 text-base font-bold border-2 rounded-lg select-none lg:text-lg hover:bg-black hover:text-white hover:text-center" to="/#Home">Home</HashLink>
         <HashLink className="px-3 py-1 mr-4 text-base font-bold border-2 rounded-lg select-none lg:text-lg hover:bg-black hover:text-white hover:text-center" to="/#Tools">Tools</HashLink>
         <HashLink className="px-3 py-1 mr-4 text-base font-bold border-2 rounded-lg select-none lg:text-lg hover:bg-black hover:text-white hover:text-center" to="/#Testimonials">Testimonials</HashLink>
-        {person!=="" && <Link className="px-3 py-1 mr-4 text-base font-bold border-2 rounded-lg select-none lg:text-lg hover:bg-black hover:text-white hover:text-center" to="/profile">My Account</Link>}
+        {person!=="" && <Link className="px-3 py-1 mr-4 text-base font-bold border-2 rounded-lg select-none lg:text-lg hover:bg-black hover:text-white hover:text-center" to="/dashboard">My Account</Link>}
         {person==="" ? (<>
           <Link className="px-3 py-1 mr-4 text-base font-bold border-2 rounded-lg select-none lg:text-lg hover:bg-black hover:text-white hover:text-center" to="/login">Login</Link>
           <Link className="px-3 py-1 mr-4 text-base font-bold border-2 rounded-lg select-none lg:text-lg hover:bg-black hover:text-white hover:text-center" to="/register">Sign up</Link>

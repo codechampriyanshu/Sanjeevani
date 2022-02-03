@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { useParams,Link } from 'react-router-dom'
+import {Link, useParams } from 'react-router-dom'
 import TextField from '@material-ui/core/TextField'
 import { newAppoint } from './newAppointmentLogic'
 
-export default function NewAppointment() {
+export default function NewAppointment({person}) {      //TODO: use props instead
     const params=useParams()
     const id=params.id
     const [appoint,setAppoint]=useState({type:"hospital",testName:"",institute:id,preferredDate:"",preferredTime:"10:10",disease:"",comments:""})
@@ -54,7 +54,7 @@ export default function NewAppointment() {
             }
             <div className='flex flex-col justify-around my-3 md:flex-row'>
                 <button className='px-2 py-1 text-lg font-semibold text-white bg-green-500 rounded-md' onClick={()=>newAppoint(appoint,setAppoint)}>Book</button>
-                <Link className='px-2 py-1 text-lg font-semibold text-white bg-green-500 rounded-md' to="/profile">Go to profile</Link>
+                <Link className='px-2 py-1 text-lg font-semibold text-white bg-green-500 rounded-md' to="/dashboard">Go to profile</Link>
             </div>
         </div>
     )

@@ -1,14 +1,13 @@
 import { useEffect, useState,useRef } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import {getCity, getState,getVillages} from '../Register/registerLogic'
 
-export default function UpdateProfile(){
+export default function UpdateProfile({person}){
     const [loading,setLoading]=useState(true)
     const [user,setUser]=useState({})
     const [isChanged,setIsChanged]=useState(false)
     const imageRef=useRef()
     const [villages,setVillages]=useState([])
-    const params=useParams()
     const navigate = useNavigate()
     function handleChange(e,field){
         if(!isChanged)  setIsChanged(true)     //function to handle all the inputs, except image
@@ -29,8 +28,7 @@ export default function UpdateProfile(){
       }
     
     useEffect(()=>{
-        console.log(params.id)
-        fetch(`http://localhost:8080/user/${params.id}`,{
+        fetch(`http://localhost:8080/user/${person}`,{
             method:'GET',
             credentials:'include',
         }).then(res=>res.json())

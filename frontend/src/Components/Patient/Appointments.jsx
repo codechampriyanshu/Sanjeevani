@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {MdOutlinePeopleAlt } from "react-icons/md";
 import {FaUserPlus} from "react-icons/fa";
 import Scheduled  from './Scheduled';
-export default function Appointments() {
+export default function Appointments({person}) {
     const [show,setShow]=useState("Scheduled Appointments")
     return (
         <div className="">

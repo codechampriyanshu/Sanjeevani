@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {MdDelete} from "react-icons/md"
 import {AiFillCaretRight} from 'react-icons/ai'
 import { useEffect } from 'react'
-export default function Scheduled({setShow}) {
+export default function Scheduled({person}) {   //TODO: use props instead
     const user=sessionStorage.getItem("user")
     const [loading,setLoading]=useState(true)
     const [appointments,setAppointments]=useState([])

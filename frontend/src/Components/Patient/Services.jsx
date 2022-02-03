@@ -11,7 +11,7 @@ import General from './General';
 import {MediHistory} from './MediHistory'
 import  Appointments from './Appointments';
 import { Link } from 'react-router-dom';
-export default function Services() {
+export default function Services({person}) {
     const [click,setclick]=useState(false)
     const [toggle,setToggle]=useState(false)
     const [active,setActive]=useState("General")
@@ -63,9 +63,9 @@ export default function Services() {
                     
                 </div>
                 <div className="col-span-8 m-8 md:col-span-7 bg-gray-50">
-                {active==="General" && <General/>}
-                {active==="MediHistory" && <MediHistory/>}
-                {active==="Appointments" && <Appointments/>}
+                {active==="General" && <General person={person}/>}
+                {active==="MediHistory" && <MediHistory person={person}/>}
+                {active==="Appointments" && <Appointments person={person}/>}
                 </div>
             </div>
       </div>

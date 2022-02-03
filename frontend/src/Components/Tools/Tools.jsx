@@ -8,7 +8,7 @@ const Tools=()=>{
         <div className="px-4 py-8 md:px-8 md:py-10" id="Tools">
         <span className="block py-5 text-center text-blue-800 select-none md:text-3xl md:font-bold md:mt-6">Some quick Features</span>
         <div className="grid grid-cols-3 gap-4">
-            <Link className="flex flex-col items-center justify-center cursor-pointer" to="/profile">
+            <Link className="flex flex-col items-center justify-center cursor-pointer" to="/appointment">
                 <FaUserPlus className="w-12 h-12 text-blue-700"/>
                 <span className="text-sm-bold ">Appointment</span>
             </Link>

@@ -4,20 +4,24 @@ import {useState,useEffect} from 'react'
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import Log from './Components/Login/Log';
 import Registration from './Components/Register/Registration';
-import Profile from './pages/Profile';
 import Maps from './Components/Maps/Maps';
 import Help from './pages/Help';
 import NewAppointment from './Components/Patient/NewAppointment';
 import ForgotPassword from './Components/Login/ForgotPassword'
 import UpdateProfile from './Components/Patient/UpdateProfile';
-
+import Services from './Components/Patient/Services';
+import Dashboard from './Components/Doctor/Dashboard';
+import PatientAppointments from './Components/Patient/Appointments';
+import DoctorAppointments from './Components/Doctor/Appointments'
 
 function App() {
 
   const [person,setPerson]=useState("")   //to store identity of user
+  const [userType,setUserType]=useState("");
   useEffect(()=>{                         //checking whether user is logged in / cookie expired
-    if(sessionStorage.getItem("user")){  
+    if(sessionStorage.getItem("user") && sessionStorage.getItem("userType")){  
       setPerson(sessionStorage.getItem("user"))
+      setUserType(sessionStorage.getItem("userType"))
     }else{
       fetch("http://localhost:8080/checkUser",{              
           credentials: 'include',
@@ -29,6 +33,7 @@ function App() {
             sessionStorage.setItem("user",res.user)
             sessionStorage.setItem("userType",res.userType)
             setPerson(res.user)
+            setUserType(res.userType)
           }
       })
       .catch((e)=>console.log(e))
@@ -41,12 +46,13 @@ function App() {
         <Route path='/' element={<Home person={person} setPerson={setPerson}/>}></Route>
         <Route path='/login' element={<Log person={person} setPerson={setPerson}/>}></Route>
         <Route path='/register' element={<Registration person={person} setPerson={setPerson}/>}></Route>
-        <Route path='/profile' element={<Profile person={person} setPerson={setPerson}/>}></Route>
+        <Route path='/dashboard' element={person!==""? (userType==="patient"?<Services person={person}/>:<Dashboard person={person}/>) : <Log person={person} setPerson={setPerson}/>}></Route>
+        <Route path='/appointment' element={person!==""? (userType==="patient"?<PatientAppointments person={person}/>:<DoctorAppointments person={person}/>) : <Log person={person} setPerson={setPerson}/>}></Route>
         <Route path="/nearby/:id" element={<Maps/>}></Route>
         <Route path="/help" element={<Help/>}></Route>
-        <Route path="/patient/appointment/new/:id" element={<NewAppointment/>}></Route>
+        <Route path="/patient/appointment/new/:id" element={<NewAppointment person={person}/>}></Route>
         <Route path="/forgotPassword" element={<ForgotPassword/>}></Route>
-        <Route path="/profile/update/:id" element={<UpdateProfile/>}></Route>
+        <Route path="/profile/update" element={person!==""? <UpdateProfile person={person}/> : <Log person={person} setPerson={setPerson}/>}></Route>
       </Routes>
     </Router>
   );
