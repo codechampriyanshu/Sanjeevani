@@ -1,7 +1,7 @@
 import './App.css';
 import Home from './pages/Home';
 import {useState,useEffect} from 'react'
-import {BrowserRouter as Router,Route,Routes,Navigate} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import Log from './Components/Login/Log';
 import Registration from './Components/Register/Registration';
 import Profile from './pages/Profile';
@@ -9,6 +9,7 @@ import Maps from './Components/Maps/Maps';
 import Help from './pages/Help';
 import NewAppointment from './Components/Patient/NewAppointment';
 import ForgotPassword from './Components/Login/ForgotPassword'
+import UpdateProfile from './Components/Patient/UpdateProfile';
 
 
 function App() {
@@ -23,8 +24,12 @@ function App() {
         })
       .then((res)=>res.json())
       .then((res)=>{
-          sessionStorage.setItem("user",res.user)
-          setPerson(res.user)
+          if(res.status===200){
+            console.log(res)
+            sessionStorage.setItem("user",res.user)
+            sessionStorage.setItem("userType",res.userType)
+            setPerson(res.user)
+          }
       })
       .catch((e)=>console.log(e))
     }
@@ -41,6 +46,7 @@ function App() {
         <Route path="/help" element={<Help/>}></Route>
         <Route path="/patient/appointment/new/:id" element={<NewAppointment/>}></Route>
         <Route path="/forgotPassword" element={<ForgotPassword/>}></Route>
+        <Route path="/profile/update/:id" element={<UpdateProfile/>}></Route>
       </Routes>
     </Router>
   );

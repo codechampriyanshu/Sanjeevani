@@ -9,6 +9,7 @@ const { confirmEmail } = require('./controllers/confirmEmail')    //for email ve
 const {resetPassword, checkingOTP, updatePassword} = require('./controllers/resetPassword')
 const { newAppointment, getAppointments,deleteAppointment } = require('./controllers/appointment')
 const {editHistory,getHistory} = require('./controllers/history')     //patient medical history
+const {updateProfile} =require('./controllers/updateProfile')
 
 require('dotenv').config()
 const MONGO_URI=process.env.MONGO_URI
@@ -42,5 +43,6 @@ app.get('/patient/history/get/:id',(req,res)=>getHistory(req,res))
 app.get('/resetPassword/:id',(req,res)=>resetPassword(req,res))
 app.get('/checkOTP/:email/:code',(req,res)=>checkingOTP(req,res))
 app.post('/update/password/:id/:otp',(req,res)=>updatePassword(req,res))
+app.post('/update/profile/:id',(req,res)=>updateProfile(req,res));
 
 app.listen(8080,()=>{console.log("server started")})
