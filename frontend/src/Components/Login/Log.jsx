@@ -7,7 +7,7 @@ export default function Log({person,setPerson}) {
   const navigate=useNavigate()
     useEffect(()=>{
       if(person!=="")
-      navigate(`/profile`)
+      navigate(`/dashboard`)
     },[person])
     return (
     <div className="flex items-center justify-center">

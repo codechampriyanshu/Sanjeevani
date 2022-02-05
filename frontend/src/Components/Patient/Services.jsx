@@ -1,7 +1,7 @@
 import React from 'react'
 import {  FaBookMedical,FaSyringe ,FaUserPlus,FaAmbulance} from "react-icons/fa";
 import {BsBoxArrowRight } from "react-icons/bs";
-import { BiLocationPlus } from "react-icons/bi";
+import { BiLocationPlus,BiVideoPlus } from "react-icons/bi";
 import {SiGooglemaps} from "react-icons/si";
 import {MdContacts} from "react-icons/md";
 import { useState } from 'react';
@@ -56,9 +56,9 @@ export default function Services({person}) {
                         <SiGooglemaps className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
                         <span className="text-sm md:text-base lg:text-lg">Hospitals</span>
                     </Link>
-                    <Link to="/nearby/ambulances" className="flex flex-col items-center justify-center mb-2">
-                        <FaAmbulance className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
-                        <span className='text-sm md:text-base lg:text-lg '>Ambulance</span>
+                    <Link to="/call" className="flex flex-col items-center justify-center mb-2">
+                        <BiVideoPlus className="w-8 h-8 text-blue-700 md:mb-2 lg:mb-3"/>
+                        <span className='text-sm md:text-base lg:text-lg '>Call a doctor</span>
                     </Link>
                     
                 </div>

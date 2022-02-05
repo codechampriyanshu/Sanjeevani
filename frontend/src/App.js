@@ -13,6 +13,8 @@ import Services from './Components/Patient/Services';
 import Dashboard from './Components/Doctor/Dashboard';
 import PatientAppointments from './Components/Patient/Appointments';
 import DoctorAppointments from './Components/Doctor/Appointments'
+import Call from './Components/Calling/Call'
+import Video from './Components/Calling/Video';
 
 function App() {
 
@@ -53,6 +55,8 @@ function App() {
         <Route path="/patient/appointment/new/:id" element={<NewAppointment person={person}/>}></Route>
         <Route path="/forgotPassword" element={<ForgotPassword/>}></Route>
         <Route path="/profile/update" element={person!==""? <UpdateProfile person={person}/> : <Log person={person} setPerson={setPerson}/>}></Route>
+        <Route path="/call" element={person!==""? <Call person={person}/> : <Log person={person} setPerson={setPerson}/>}></Route>
+        <Route path="/call/video" element={person!==""? <Video person={person}/> : <Log person={person} setPerson={setPerson}/>}></Route>
       </Routes>
     </Router>
   );
