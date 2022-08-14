@@ -1,9 +1,16 @@
 const User=require('../models/user')
 const jwt=require('jsonwebtoken')
 require("dotenv").config()
+const config=require('../config')
+const {google}=require('googleapis')
+const OAuth2=google.auth.OAuth2
+
+const OAuth2_client=new OAuth2(config.clientId, config.clientSecret)
+OAuth2_client.setCredentials({refresh_token:config.refreshToken})
+
 
 const nodemailer=require('nodemailer')          //used it to send mail to newly registered emails for verification purposes.
-const {JWT_SECRET,ADMIN_MAIL,ADMIN_MAIL_PASSWORD}=process.env       //jwt secret, email and password of the gmail account from which we will send mails
+const {JWT_SECRET}=process.env       //jwt secret, email and password of the gmail account from which we will send mails
 
 const createToken=(id)=>{       //function to create jwt cookies
     return jwt.sign({id}, JWT_SECRET,{
@@ -41,15 +48,21 @@ module.exports.register=async (req,res)=>{
             code += characters[Math.floor(Math.random() * characters.length )];
         }
         const user= await User.create({...req.body,confirmationCode:code})
+        const accessToken=OAuth2_client.getAccessToken()
+
         const transport = nodemailer.createTransport({
-            service: "Gmail",
+            service: "gmail",
             auth: {
-              user: ADMIN_MAIL,
-              pass: ADMIN_MAIL_PASSWORD,
+                type:'OAuth2',
+                user: config.user,
+                clientId:config.clientId,
+                clientSecret:config.clientSecret,
+                refreshToken:config.refreshToken,
+                accessToken:accessToken
             },
           })
           transport.sendMail({
-            from: ADMIN_MAIL,
+            from: config.user,
             to: req.body.email,
             subject: "Please confirm your account",
             html: `<h1>Email Confirmation</h1>
