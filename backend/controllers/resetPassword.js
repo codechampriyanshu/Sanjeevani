@@ -1,7 +1,12 @@
 const User=require('../models/user')
 const nodemailer=require('nodemailer')
-require('dotenv').config()
-const {ADMIN_MAIL_PASSWORD,ADMIN_MAIL}=process.env
+const config=require('../config')
+const {google}=require('googleapis')
+const OAuth2=google.auth.OAuth2
+
+const OAuth2_client=new OAuth2(config.clientId, config.clientSecret)
+OAuth2_client.setCredentials({refresh_token:config.refreshToken})
+
 
 module.exports.resetPassword=(req,res)=>{       //request to send email to the user containing OTP
     const id=req.params.id
@@ -15,15 +20,19 @@ module.exports.resetPassword=(req,res)=>{       //request to send email to the u
             doc.otp=otp
             doc.save()
             const transport = nodemailer.createTransport({
-                service: "Gmail",
+                service: "gmail",
                 auth: {
-                  user: ADMIN_MAIL,
-                  pass: ADMIN_MAIL_PASSWORD,
+                    type:'OAuth2',
+                    user: config.user,
+                    clientId:config.clientId,
+                    clientSecret:config.clientSecret,
+                    refreshToken:config.refreshToken,
+                    accessToken:accessToken
                 },
               })
               transport.sendMail({
-                from: ADMIN_MAIL,
-                to: doc.email,
+                from: config.user,
+                to: req.body.email,
                 subject: "Password reset",
                 html: `<h2>Hello ${doc.name}</h2>
                     <p>OTP to reset your password is: <h2>${otp}</h2></p>
